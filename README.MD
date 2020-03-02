@@ -4,11 +4,11 @@
 This web page provides brief an information about all kind of movies. The data is taken from [The movie db](https://www.themoviedb.org) API. 
 <br />
 
-![](images/preview2.png)
+![](src/images/preview2.png)
 <br />
 <br />
 
-![](images/preview1.png)
+![](src/images/preview1.png)
 
 ## Technology stack
 ES6+, Webpack, Babel, React, Redux, propTypes, css-modules

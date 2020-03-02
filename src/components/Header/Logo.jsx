@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import logo from '../../../images/logo.png';
+import logo from '../../images/logo.png';
 import header from './Header.scss';
 import { sections } from '../../constants/app';
 

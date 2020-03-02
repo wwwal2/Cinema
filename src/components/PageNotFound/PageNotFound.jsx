@@ -1,5 +1,5 @@
 import React from 'react';
-import missingPage from '../../../images/cropped.gif';
+import missingPage from '../../images/cropped.gif';
 import styles from './PageNotFound.scss';
 
 export default function Footer() {

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import details from './Details.scss';
-import favoriteOn from '../../../images/starFilled.png';
-import favoriteOff from '../../../images/starEmpty.png';
-import noPoster from '../../../images/noPoster.png';
+import favoriteOn from '../../images/starFilled.png';
+import favoriteOff from '../../images/starEmpty.png';
+import noPoster from '../../images/noPoster.png';
 
 import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
 import { checkFavorite, makeRecitation } from '../../utils';
