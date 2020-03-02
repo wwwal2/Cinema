@@ -22,8 +22,8 @@ export default class Request {
     if (!data.ok) {
       throw new Error(`Request with options ${url} failed. Status: ${data.status}`);
     }
-    const response = await data.json();
-    return response;
+
+    return data.json();
   }
 
   getMovies(...args) {
@@ -31,7 +31,7 @@ export default class Request {
       if (curr !== ' ') {
         acc = acc + this.keyNames[index] + curr;
         if (index === 3) {
-          acc = acc + this.keyNames[4] + (Number(curr) + 1);
+          acc = acc + this.keyNames[4] + (Number(curr) + 0.9);
         }
         return acc;
       } return acc;

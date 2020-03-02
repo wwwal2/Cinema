@@ -14,22 +14,3 @@ export const CHANGE_CARD_NUM = 'CHANGE_CARD_NUM';
 export const DEFINE_SECTION = 'DEFINE_SECTION';
 export const ADD_QUERY = 'ADD_QUERY';
 export const ADD_URL_DATA = 'ADD_URL_DATA';
-
-export const minCardsNum = 4;
-export const maxCardsNum = 20;
-export const changeStep = 4;
-export const apiResultsPerPage = 20;
-export const sections = {
-  main: 'main',
-  popular: 'popular',
-  favorite: 'favorite',
-  search: 'search',
-};
-export const routes = {
-  main: '/main',
-  favorite: '/favorite',
-  popular: '/popular',
-  search: '/search',
-};
-export const filters = 'Filters';
-export const options = 'Options';

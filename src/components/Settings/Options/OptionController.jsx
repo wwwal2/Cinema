@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { checkLimit } from '../../../Utils';
+import { checkLimit } from '../../../utils';
 
-import options from './OptionsPayload.scss';
+import options from './Options.scss';
 import { changePayloadNum } from '../../../redux/actions';
 
 import {
   maxCardsNum,
   minCardsNum,
   changeStep,
-} from '../../../constants';
+} from '../../../constants/app';
 
 function OptionsController(props) {
   const {
@@ -45,18 +45,6 @@ function OptionsController(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    allControllers: {
-      main: state.cardsNum.main,
-      popular: state.cardsNum.popular,
-      favorite: state.cardsNum.favorite,
-    },
-  }
-);
-
-export default connect(mapStateToProps, { changePayloadNum })(OptionsController);
-
 OptionsController.propTypes = {
   label: PropTypes.string,
   target: PropTypes.string,
@@ -70,3 +58,15 @@ OptionsController.defaultProps = {
   allControllers: {},
   changePayloadNum: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    allControllers: {
+      main: state.cardsNum.main,
+      popular: state.cardsNum.popular,
+      favorite: state.cardsNum.favorite,
+    },
+  }
+);
+
+export default connect(mapStateToProps, { changePayloadNum })(OptionsController);

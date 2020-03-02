@@ -4,7 +4,7 @@ import Card from '../Card';
 
 import main from './Main.scss';
 
-export default function Footer(props) {
+export default function Payload(props) {
   const { items } = props;
   return (
     <main className={main.pageBody}>
@@ -17,10 +17,10 @@ export default function Footer(props) {
   );
 }
 
-Footer.propTypes = {
+Payload.propTypes = {
   items: PropTypes.array,
 };
 
-Footer.defaultProps = {
+Payload.defaultProps = {
   items: [],
 };

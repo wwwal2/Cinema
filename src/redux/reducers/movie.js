@@ -1,5 +1,5 @@
-import { saveSettings } from '../../Utils';
-import defaultOptions from '../../defaultOptions';
+import { saveSettings } from '../../utils';
+import initialState from '../initialState';
 
 import {
   ADD_RATING,
@@ -7,11 +7,9 @@ import {
   ADD_YEAR,
   RESET_FILTERS,
   ADD_URL_DATA,
-} from '../../constants';
+} from '../../constants/actionTypes';
 
-const initialState = defaultOptions.movie;
-
-export default (state = initialState, action) => {
+export default (state = initialState.movie, action) => {
   switch (action.type) {
     case ADD_RATING:
       saveSettings('movie', state, action.payload, 'rating');

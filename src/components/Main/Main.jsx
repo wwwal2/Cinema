@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import makePayload from './makePayload';
-import { decodePath } from '../../Utils';
+import makePayload from './helpers/makePayload';
+import { decodePath, calculatePath } from '../../utils';
 
-import Request from './Request';
+import Request from './helpers/Request';
 import {
   addResults,
   addAllGenres,
@@ -52,13 +52,15 @@ class Main extends React.Component {
       detailsId,
       addResults,
       showDetails,
+      briefStatus,
+      history,
     } = this.props;
-
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addResults(payload.totalResults);
       this.updateState('items', payload.items);
+      history.push(calculatePath(briefStatus));
     }
 
     if (prevProps.detailsId !== detailsId) {
@@ -78,31 +80,17 @@ class Main extends React.Component {
     const { detailsTab } = this.props;
     const { items, details } = this.state;
     return (
-      (details.id && detailsTab)
-        ? (<Details item={details} />)
-        : (<Payload items={items} />)
+      details.id && detailsTab
+        ? <Details item={details} />
+        : <Payload items={items} />
     );
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    allProps: state,
-    detailsTab: state.status.detailsTab,
-    detailsId: state.detailsId,
-    updateCounter: state.status.updateCounter,
-  }
-);
-
-export default connect(mapStateToProps, {
-  addResults,
-  addAllGenres,
-  showDetails,
-  addUrlData,
-})(Main);
-
 Main.propTypes = {
+  history: PropTypes.object,
   location: PropTypes.object,
+  briefStatus: PropTypes.object,
   allProps: PropTypes.object,
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
@@ -114,7 +102,9 @@ Main.propTypes = {
 };
 
 Main.defaultProps = {
+  history: {},
   location: {},
+  briefStatus: {},
   detailsTab: false,
   allProps: {},
   updateCounter: 0,
@@ -124,3 +114,28 @@ Main.defaultProps = {
   showDetails: () => { },
   addUrlData: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    allProps: state,
+    detailsTab: state.status.detailsTab,
+    detailsId: state.detailsId,
+    updateCounter: state.status.updateCounter,
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.uiPage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+      query: state.searchQuery,
+    },
+  }
+);
+
+export default connect(mapStateToProps, {
+  addResults,
+  addAllGenres,
+  showDetails,
+  addUrlData,
+})(Main);

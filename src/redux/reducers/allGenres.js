@@ -1,5 +1,4 @@
-import { ADD_ALL_GENRES } from '../../constants';
-
+import { ADD_ALL_GENRES } from '../../constants/actionTypes';
 
 export default (state = [], action) => {
   switch (action.type) {

@@ -1,99 +1,93 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
-import { filters } from '../../constants';
-import { calculatePath } from '../../Utils';
+import { filters, sections } from '../../constants/app';
 
-import settings from './Settings.scss';
+
+import {
+  actionBtn,
+  reset,
+  apply,
+  actionBtnContainer,
+  resetLink,
+} from './Settings.scss';
 
 import {
   update,
   resetFilters,
   resetOptions,
-  addUIPageNum,
+  addUiPageNum,
+  defineSection,
 } from '../../redux/actions';
 
 function Buttons(props) {
   const {
     resetFilters,
     resetOptions,
-    reset,
+    elementName,
     update,
-    briefStatus,
+    defineSection,
   } = props;
 
-  const apply = () => {
+
+  const onApply = () => {
+    defineSection(sections.main);
     update();
-    calculatePath(briefStatus);
   };
 
-  const doReset = (element) => {
+  const onReset = (element) => {
     if (element === filters) {
       resetFilters();
     } else {
       resetOptions();
     }
+    defineSection(sections.main);
     update();
   };
 
   return (
-    <section className={settings.actionBtnContainer}>
-      <Link to={calculatePath(briefStatus)} className={settings.applyLink}>
-        <button
-          type="button"
-          onClick={apply}
-          className={`${settings.actionBtn} ${settings.apply}`}
-        >
-          Apply
-        </button>
-      </Link>
+    <section className={actionBtnContainer}>
 
-      <Link to="/" className={settings.resetLink}>
-        <button
-          type="button"
-          onClick={() => doReset(reset)}
-          className={`${settings.actionBtn} ${settings.reset}`}
-        >
-          Reset
-        </button>
-      </Link>
+      <button
+        type="button"
+        onClick={onApply}
+        className={`${actionBtn} ${apply}`}
+      >
+        Apply
+      </button>
+
+      <button
+        type="button"
+        onClick={() => onReset(elementName)}
+        className={`${actionBtn} ${reset} ${resetLink}`}
+      >
+        Reset
+      </button>
     </section>
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    briefStatus: {
-      section: state.status.section,
-      page: state.status.UIpage,
-      cardsNum: state.cardsNum[state.status.section],
-      year: state.movie.year,
-      genre: state.movie.genre,
-      rating: state.movie.rating,
-    },
-  }
-);
-export default connect(mapStateToProps, {
-  update,
-  resetFilters,
-  resetOptions,
-  addUIPageNum,
-})(Buttons);
-
 Buttons.propTypes = {
-  briefStatus: PropTypes.object,
-  reset: PropTypes.string,
+  elementName: PropTypes.string,
   update: PropTypes.func,
   resetFilters: PropTypes.func,
   resetOptions: PropTypes.func,
+  defineSection: PropTypes.func,
 };
 
 Buttons.defaultProps = {
-  briefStatus: [],
-  reset: '',
+  elementName: '',
   update: () => { },
   resetFilters: () => { },
   resetOptions: () => { },
+  defineSection: () => { },
 };
+
+export default connect(null, {
+  update,
+  resetFilters,
+  resetOptions,
+  addUiPageNum,
+  defineSection,
+})(Buttons);

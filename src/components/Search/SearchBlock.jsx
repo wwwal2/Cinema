@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,11 +6,11 @@ import {
   addQuery,
   defineSection,
   update,
-  addUIPageNum,
+  addUiPageNum,
   showDetails,
 } from '../../redux/actions';
 
-import { sections } from '../../constants';
+import { sections } from '../../constants/app';
 import search from './SearchBlock.scss';
 
 function Search(props) {
@@ -21,11 +20,9 @@ function Search(props) {
     addQuery,
     defineSection,
     update,
-    addUIPageNum,
+    addUiPageNum,
     showDetails,
   } = props;
-
-  const history = useHistory();
 
   const userInput = (event) => {
     const { value } = event.target;
@@ -34,13 +31,12 @@ function Search(props) {
 
   const submit = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
-      addUIPageNum(1);
+      addUiPageNum(1);
       addQuery(encodeURIComponent(searchInput.trim()));
       defineSection(sections.search);
       showDetails(false);
       update();
       setSearchInput('');
-      history.push('/search/1');
     }
   };
 
@@ -65,21 +61,13 @@ function Search(props) {
   );
 }
 
-export default connect(null, {
-  addQuery,
-  defineSection,
-  update,
-  addUIPageNum,
-  showDetails,
-})(Search);
-
 Search.propTypes = {
   placeHolder: PropTypes.string,
   addQuery: PropTypes.func,
   defineSection: PropTypes.func,
   showDetails: PropTypes.func,
   update: PropTypes.func,
-  addUIPageNum: PropTypes.func,
+  addUiPageNum: PropTypes.func,
 };
 
 Search.defaultProps = {
@@ -87,6 +75,14 @@ Search.defaultProps = {
   addQuery: () => { },
   defineSection: () => { },
   update: () => { },
-  addUIPageNum: () => { },
+  addUiPageNum: () => { },
   showDetails: () => { },
 };
+
+export default connect(null, {
+  addQuery,
+  defineSection,
+  update,
+  addUiPageNum,
+  showDetails,
+})(Search);

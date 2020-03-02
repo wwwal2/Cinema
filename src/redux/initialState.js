@@ -1,3 +1,5 @@
+import { currentCardsNum } from '../constants/app';
+
 export default {
   movie: {
     year: ' ',
@@ -6,16 +8,16 @@ export default {
   },
   status: {
     totalResults: 0,
-    UIpage: 1,
+    uiPage: 1,
     updateCounter: 0,
     detailsTab: false,
     section: 'main',
   },
   cardsNum: {
-    main: 8,
-    popular: 8,
-    favorite: 8,
-    search: 20,
+    main: currentCardsNum,
+    popular: currentCardsNum,
+    favorite: currentCardsNum,
+    search: currentCardsNum,
   },
   favorite: {
     favoriteMovies: [],
@@ -23,5 +25,5 @@ export default {
   },
   allGenres: [],
   detailsId: 0,
-  searchQuery: '',
+  searchQuery: ' ',
 };

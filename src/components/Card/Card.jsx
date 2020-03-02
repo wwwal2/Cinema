@@ -14,7 +14,7 @@ import {
   update,
 } from '../../redux/actions';
 
-import { checkFavorite } from '../../Utils';
+import { checkFavorite } from '../../utils';
 
 
 function Card(props) {
@@ -29,11 +29,11 @@ function Card(props) {
     addFavorite,
   } = props;
 
-  const textLength = 200;
-
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
   const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
   const [notification, setNotification] = useState(card.notification);
+
+  const textLength = 200;
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -61,13 +61,9 @@ function Card(props) {
         <img
           role="button"
           alt="favorite"
-          src={
-            favorite
-              ? favoriteOn
-              : favoriteOff
-          }
+          src={favorite ? favoriteOn : favoriteOff}
           className={card.favorite}
-          onClick={() => toggleFavorite()}
+          onClick={toggleFavorite}
         />
       </section>
       <h3>
@@ -96,21 +92,6 @@ function Card(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    favoriteIds: state.favorite.favoriteIds,
-    section: state.status.section,
-    detailsId: state.detailsId,
-  }
-);
-
-export default connect(mapStateToProps, {
-  addFavorite,
-  addDetailsId,
-  showDetails,
-  update,
-})(Card);
-
 Card.propTypes = {
   section: PropTypes.string,
   item: PropTypes.object,
@@ -132,3 +113,18 @@ Card.defaultProps = {
   showDetails: () => { },
   update: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favorite.favoriteIds,
+    section: state.status.section,
+    detailsId: state.detailsId,
+  }
+);
+
+export default connect(mapStateToProps, {
+  addFavorite,
+  addDetailsId,
+  showDetails,
+  update,
+})(Card);

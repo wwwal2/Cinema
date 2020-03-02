@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { filters } from '../../../constants';
+import { filters } from '../../../constants/app';
 
 import Buttons from '../Buttons';
 import YearFilter from './YearFilter';
@@ -21,20 +21,10 @@ function FilterPayload(props) {
       <YearFilter />
       { allGenres && <Select selected={currentGenre} allGenres={blancGenre.concat(allGenres)} /> }
       <Select selected={currentRating} ratingPoints={ratingPoints} />
-      <Buttons reset={filters} />
+      <Buttons elementName={filters} />
     </section>
   );
 }
-
-const mapStateToProps = (state) => (
-  {
-    currentRating: state.movie.rating,
-    currentGenre: state.movie.genre,
-    allGenres: state.allGenres,
-  }
-);
-
-export default connect(mapStateToProps, null)(FilterPayload);
 
 FilterPayload.propTypes = {
   ratingPoints: PropTypes.array,
@@ -49,3 +39,13 @@ FilterPayload.defaultProps = {
   currentGenre: '',
   allGenres: [],
 };
+
+const mapStateToProps = (state) => (
+  {
+    currentRating: state.movie.rating,
+    currentGenre: state.movie.genre,
+    allGenres: state.allGenres,
+  }
+);
+
+export default connect(mapStateToProps, null)(FilterPayload);

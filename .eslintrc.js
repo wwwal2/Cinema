@@ -29,5 +29,6 @@ module.exports = {
     'no-shadow': 0,
     'no-unused-expressions': 0,
     'no-restricted-syntax': 0,
+    'react-hooks/exhaustive-deps': 0,
   },
 };

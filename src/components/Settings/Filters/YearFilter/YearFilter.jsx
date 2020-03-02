@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-
 import filters from '../FilterPayload.scss';
 
 import { addYear } from '../../../../redux/actions';
-import { numberValidation, onlyNumbers } from '../../../../Utils';
+import { validateLimits, onlyNumbers } from '../../../../utils';
 
 function useHook(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -47,7 +46,7 @@ function YearFilter(props) {
 
   const submitCheck = (event) => {
     if (event.key === 'Enter') {
-      if (numberValidation(maxYear, minYear, inputYear.value)) {
+      if (validateLimits(maxYear, minYear, inputYear.value)) {
         addYear(inputYear.value);
       } else {
         showNotification();
@@ -85,10 +84,6 @@ function YearFilter(props) {
   );
 }
 
-const mapStateToProps = (state) => ({ storeYear: state.movie.year });
-
-export default connect(mapStateToProps, { addYear })(YearFilter);
-
 YearFilter.propTypes = {
   storeYear: PropTypes.string,
   maxYear: PropTypes.number,
@@ -104,3 +99,7 @@ YearFilter.defaultProps = {
   notification: 'Please input correct date from \'1950\' to \'2020\'',
   addYear: () => { },
 };
+
+const mapStateToProps = (state) => ({ storeYear: state.movie.year });
+
+export default connect(mapStateToProps, { addYear })(YearFilter);

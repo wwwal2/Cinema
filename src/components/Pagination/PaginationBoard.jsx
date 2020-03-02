@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { paginationShape } from '../../Utils';
+import { paginationShape } from '../../utils';
 import Button from './Button';
 
 import pagination from './Pagination.scss';
@@ -22,9 +22,9 @@ export default function PaginationBoard(props) {
   };
 
   return (
-    <div className={pagination.boardContainer}>
+    <section className={pagination.boardContainer}>
       {assemble(totalPages, currentPage)}
-    </div>
+    </section>
   );
 }
 

@@ -1,11 +1,11 @@
-import { calculateRequestProps } from '../../Utils';
-import { apiResultsPerPage } from '../../constants';
+import { calculateRequestProps } from '../../../utils';
+import { apiResultsPerPage } from '../../../constants/app';
 import Request from './Request';
 
 const request = new Request();
 
-export default async (requestName, requestArgs, cardsPerPage, UIpage) => {
-  const layout = calculateRequestProps(UIpage, cardsPerPage, apiResultsPerPage);
+export default async (requestName, requestArgs, cardsPerPage, uiPage) => {
+  const layout = calculateRequestProps(uiPage, cardsPerPage, apiResultsPerPage);
 
   if (layout.startPage === layout.endPage || layout.endRes === 0) {
     const data = await request[requestName](

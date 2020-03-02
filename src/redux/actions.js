@@ -15,14 +15,14 @@ import {
   DEFINE_SECTION,
   ADD_QUERY,
   ADD_URL_DATA,
-} from '../constants';
+} from '../constants/actionTypes';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
 export const addGenre = (payload) => ({ type: ADD_GENRE, payload });
 export const addYear = (payload) => ({ type: ADD_YEAR, payload });
 export const addAllGenres = (payload) => ({ type: ADD_ALL_GENRES, payload });
 export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
-export const addUIPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
+export const addUiPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: TOGGLE_FAVORITE, payload });
 export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
 export const showDetails = (payload) => ({ type: SHOW_DETAILS, payload });

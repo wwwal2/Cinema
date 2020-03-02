@@ -1,4 +1,4 @@
-import { ADD_DETAILS_ID } from '../../constants';
+import { ADD_DETAILS_ID } from '../../constants/actionTypes';
 
 export default (state = 0, action) => {
   switch (action.type) {

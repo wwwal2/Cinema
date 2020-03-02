@@ -7,6 +7,10 @@
 
   .logo {
     height: 7vh;
+    &:hover {
+      cursor: pointer;
+      filter: contrast(0.5);
+    }
   }
 
   .menuContainer {

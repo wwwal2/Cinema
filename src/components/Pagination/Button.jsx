@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addUIPageNum, update } from '../../redux/actions';
-import { calculatePath } from '../../Utils';
+import { addUiPageNum, update } from '../../redux/actions';
 
 
 import pagination from './Pagination.scss';
@@ -13,20 +11,18 @@ function Button(props) {
   const {
     page,
     btnClass,
-    addUIPageNum,
+    addUiPageNum,
     update,
     disabled,
-    briefStatus,
   } = props;
 
   const changePage = (value) => {
-    addUIPageNum(value);
+    addUiPageNum(value);
     update();
   };
 
   return (
-    <Link
-      to={calculatePath(briefStatus)}
+    <a
       key={page}
     >
       <button
@@ -37,40 +33,24 @@ function Button(props) {
       >
         {page}
       </button>
-    </Link>
+    </a>
   );
 }
 
-
-const mapStateToProps = (state) => (
-  {
-    briefStatus: {
-      section: state.status.section,
-      page: state.status.UIpage,
-      cardsNum: state.cardsNum[state.status.section],
-      year: state.movie.year,
-      genre: state.movie.genre,
-      rating: state.movie.rating,
-    },
-  }
-);
-
-export default connect(mapStateToProps, { addUIPageNum, update })(Button);
-
 Button.propTypes = {
-  briefStatus: PropTypes.object,
   page: PropTypes.node,
   btnClass: PropTypes.string,
-  addUIPageNum: PropTypes.func,
+  addUiPageNum: PropTypes.func,
   update: PropTypes.func,
   disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {
-  briefStatus: {},
   page: 0,
   btnClass: '',
-  addUIPageNum: () => { },
+  addUiPageNum: () => { },
   update: () => { },
   disabled: false,
 };
+
+export default connect(null, { addUiPageNum, update })(Button);

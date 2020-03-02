@@ -1,5 +1,5 @@
-import { sections, apiResultsPerPage } from '../../constants';
-import { codeGenre, calculateRequestProps } from '../../Utils';
+import { sections, apiResultsPerPage } from '../../../constants/app';
+import { codeGenre, calculateRequestProps } from '../../../utils';
 import getItems from './getItems';
 
 export default async (props) => {
@@ -11,7 +11,7 @@ export default async (props) => {
       search,
     },
     movie: { year, rating, genre },
-    status: { UIpage, section },
+    status: { uiPage, section },
     favorite: { favoriteMovies },
     allGenres,
     searchQuery,
@@ -26,7 +26,7 @@ export default async (props) => {
           rating,
         ],
         main,
-        UIpage,
+        uiPage,
       );
       return mainPayload;
 
@@ -35,7 +35,7 @@ export default async (props) => {
         'getPopular',
         [],
         popular,
-        UIpage,
+        uiPage,
       );
       return popularPayload;
 
@@ -44,13 +44,13 @@ export default async (props) => {
         'findMovie',
         [searchQuery],
         search,
-        UIpage,
+        uiPage,
       );
       return searchPayload;
 
     case sections.favorite:
       const layout = calculateRequestProps(
-        UIpage,
+        uiPage,
         favorite,
         apiResultsPerPage,
       );

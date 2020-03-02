@@ -6,7 +6,6 @@ const splitToArray = (total) => {
   return elements;
 };
 
-
 export default (total, current, sideLength) => {
   let result = splitToArray(total - 1);
   // cut right

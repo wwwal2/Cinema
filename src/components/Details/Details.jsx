@@ -8,7 +8,7 @@ import favoriteOff from '../../../images/starEmpty.png';
 import noPoster from '../../../images/noPoster.png';
 
 import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
-import { checkFavorite, parsePayloadArray } from '../../Utils';
+import { checkFavorite, makeRecitation } from '../../utils';
 
 
 function Details(props) {
@@ -26,7 +26,6 @@ function Details(props) {
     addFavorite(item);
     setFavorite(!favorite);
   };
-
   return (
     <section className={details.wrapper}>
       <div className={details.container}>
@@ -42,17 +41,17 @@ function Details(props) {
             alt="favorite"
             src={favorite ? favoriteOn : favoriteOff}
             className={details.favorite}
-            onClick={() => toggleFavorite()}
+            onClick={toggleFavorite}
           />
           <h2>{item.title}</h2>
           <p className={details.shortText}>{`Release: ${item.release_date}`}</p>
           <p className={details.shortText}>
             <span>Production: </span>
-            {parsePayloadArray(item.production_countries, 'name')}
+            {makeRecitation(item.production_countries, 'name')}
           </p>
           <p className={details.shortText}>{`Budget: ${item.budget}$`}</p>
           <p className={details.shortText}>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</p>
-          <p className={details.shortText}>{parsePayloadArray(item.genres, 'name')}</p>
+          <p className={details.shortText}>{makeRecitation(item.genres, 'name')}</p>
           <article>
             <p>{item.overview}</p>
           </article>
@@ -66,14 +65,8 @@ function Details(props) {
         BACK
       </button>
     </section>
-
   );
 }
-
-const mapStateToProps = (state) => ({ favoriteIds: state.favoriteIds });
-
-
-export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);
 
 Details.propTypes = {
   item: PropTypes.object,
@@ -88,3 +81,7 @@ Details.defaultProps = {
   addFavorite: () => { },
   showDetails: () => { },
 };
+
+const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
+
+export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);

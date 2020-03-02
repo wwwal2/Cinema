@@ -1,62 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 import {
-  addUIPageNum,
+  addUiPageNum,
   update,
   defineSection,
   showDetails,
 } from '../../redux/actions';
-import { sections } from '../../constants';
+import { sections } from '../../constants/app';
 import header from './Header.scss';
 
 function Tab(props) {
   const {
     tabName,
-    route,
-    addUIPageNum,
+    addUiPageNum,
     defineSection,
     update,
     showDetails,
   } = props;
 
   const changeTab = (value) => {
-    addUIPageNum(1);
+    addUiPageNum(1);
     defineSection(sections[value.toLowerCase()]);
     showDetails(false);
     update();
   };
 
   return (
-    <Link
-      to={route}
-      className={header.tabs}
+    <button
       key={tabName}
+      className={header.tabs}
+      onClick={() => changeTab(tabName)}
+      type="button"
     >
-      <button
-        className={header.tabs}
-        onClick={() => changeTab(tabName)}
-        type="button"
-      >
-        {tabName}
-      </button>
-    </Link>
+      {tabName}
+    </button>
   );
 }
 
-export default connect(null, {
-  addUIPageNum,
-  update,
-  defineSection,
-  showDetails,
-})(Tab);
-
 Tab.propTypes = {
   tabName: PropTypes.string,
-  route: PropTypes.string,
-  addUIPageNum: PropTypes.func,
+  addUiPageNum: PropTypes.func,
   defineSection: PropTypes.func,
   showDetails: PropTypes.func,
   update: PropTypes.func,
@@ -64,9 +49,15 @@ Tab.propTypes = {
 
 Tab.defaultProps = {
   tabName: '',
-  route: '',
-  addUIPageNum: () => { },
+  addUiPageNum: () => { },
   defineSection: () => { },
   showDetails: () => { },
   update: () => { },
 };
+
+export default connect(null, {
+  addUiPageNum,
+  update,
+  defineSection,
+  showDetails,
+})(Tab);
