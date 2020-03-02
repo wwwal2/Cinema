@@ -5,6 +5,9 @@ export const currentCardsNum = 8;
 export const changeStep = 4;
 export const apiResultsPerPage = 20;
 
+export const textLength = 200;
+
+
 export const sections = {
   main: 'main',
   popular: 'popular',
