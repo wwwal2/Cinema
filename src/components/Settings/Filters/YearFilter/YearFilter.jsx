@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import filters from '../FilterPayload.scss';
 
 import { addYear } from '../../../../redux/actions';
-import { numberValidation, onlyNumbers } from '../../../../utils';
+import { validateLimits, onlyNumbers } from '../../../../utils';
 
 function useHook(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -47,7 +47,7 @@ function YearFilter(props) {
 
   const submitCheck = (event) => {
     if (event.key === 'Enter') {
-      if (numberValidation(maxYear, minYear, inputYear.value)) {
+      if (validateLimits(maxYear, minYear, inputYear.value)) {
         addYear(inputYear.value);
       } else {
         showNotification();

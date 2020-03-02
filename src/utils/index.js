@@ -1,4 +1,4 @@
-import numberValidation from './numberValidation';
+import validateLimits from './validateLimits';
 import onlyNumbers from './onlyNumbers';
 import calculateRequestProps from './calculateRequestProps';
 import codeGenre from './codeGenre';
@@ -15,7 +15,7 @@ import inRange from './inRange';
 import localStorageExists from './localStorageExists';
 
 export {
-  numberValidation,
+  validateLimits,
   onlyNumbers,
   calculateRequestProps,
   codeGenre,
