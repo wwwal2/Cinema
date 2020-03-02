@@ -1,7 +1,8 @@
 export default (defaultOptions) => {
-  const loaded = JSON.parse(localStorage.getItem('Cinema'));
-  if (loaded) {
-    return loaded;
+  try {
+    const loaded = JSON.parse(localStorage.getItem('cinema'));
+    return loaded || defaultOptions;
+  } catch (e) {
+    return false;
   }
-  return defaultOptions;
 };

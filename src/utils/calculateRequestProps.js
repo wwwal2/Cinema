@@ -5,12 +5,14 @@ export default (uiPage, cardsPerPage, apiResultsPerPage) => {
   const startPage = Math.floor(startResult / apiResultsPerPage) + 1;
   const endPage = Math.floor(endResult / apiResultsPerPage) + 1;
 
-  const startRes = ((startResult / apiResultsPerPage) % 1) * apiResultsPerPage;
-  const endRes = ((endResult / apiResultsPerPage) % 1) * apiResultsPerPage;
+  const startRes = Math.round(((startResult / apiResultsPerPage) % 1) * apiResultsPerPage);
+
+  const endRes = Math.round(((endResult / apiResultsPerPage) % 1) * apiResultsPerPage);
+
   return {
     startPage,
-    startRes: Math.round(startRes),
+    startRes,
     endPage,
-    endRes: Math.round(endRes),
+    endRes,
   };
 };

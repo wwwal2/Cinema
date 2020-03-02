@@ -9,9 +9,12 @@ export default (status) => {
     if (item === ' ') {
       return acc;
     }
+    if (index === 0) {
+      return `${acc}${keys[index]}=${item}`;
+    }
     return `${acc}&${keys[index]}=${item}`;
   }, 'status?');
-  const cutUrl = urlPath.replace('&', '');
 
-  return cutUrl;
+
+  return urlPath;
 };
