@@ -20,8 +20,6 @@ function Select(props) {
   );
 }
 
-export default connect(null, { addRating, addGenre })(Select);
-
 Select.propTypes = {
   allGenres: PropTypes.array,
   ratingPoints: PropTypes.array,
@@ -37,3 +35,5 @@ Select.defaultProps = {
   addGenre: () => { },
   readTheStore: {},
 };
+
+export default connect(null, { addRating, addGenre })(Select);

@@ -18,6 +18,6 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = {
-  created: 'Feb 2020',
+  created: '2020',
   email: 'oleksiis@default-value.com',
 };

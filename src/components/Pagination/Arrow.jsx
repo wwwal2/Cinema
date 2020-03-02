@@ -6,7 +6,6 @@ import { addUiPageNum, update } from '../../redux/actions';
 
 import pagination from './Pagination.scss';
 
-
 function Arrow(props) {
   const {
     addUiPageNum,
@@ -25,8 +24,6 @@ function Arrow(props) {
   );
 }
 
-export default connect(null, { addUiPageNum, update })(Arrow);
-
 Arrow.propTypes = {
   page: PropTypes.number,
   image: PropTypes.string,
@@ -40,3 +37,5 @@ Arrow.defaultProps = {
   addUiPageNum: () => { },
   update: () => { },
 };
+
+export default connect(null, { addUiPageNum, update })(Arrow);

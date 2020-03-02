@@ -87,31 +87,6 @@ class Main extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
-    allProps: state,
-    detailsTab: state.status.detailsTab,
-    detailsId: state.detailsId,
-    updateCounter: state.status.updateCounter,
-    briefStatus: {
-      section: state.status.section,
-      page: state.status.uiPage,
-      cardsNum: state.cardsNum[state.status.section],
-      year: state.movie.year,
-      genre: state.movie.genre,
-      rating: state.movie.rating,
-      query: state.searchQuery,
-    },
-  }
-);
-
-export default connect(mapStateToProps, {
-  addResults,
-  addAllGenres,
-  showDetails,
-  addUrlData,
-})(Main);
-
 Main.propTypes = {
   history: PropTypes.object,
   location: PropTypes.object,
@@ -139,3 +114,28 @@ Main.defaultProps = {
   showDetails: () => { },
   addUrlData: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    allProps: state,
+    detailsTab: state.status.detailsTab,
+    detailsId: state.detailsId,
+    updateCounter: state.status.updateCounter,
+    briefStatus: {
+      section: state.status.section,
+      page: state.status.uiPage,
+      cardsNum: state.cardsNum[state.status.section],
+      year: state.movie.year,
+      genre: state.movie.genre,
+      rating: state.movie.rating,
+      query: state.searchQuery,
+    },
+  }
+);
+
+export default connect(mapStateToProps, {
+  addResults,
+  addAllGenres,
+  showDetails,
+  addUrlData,
+})(Main);

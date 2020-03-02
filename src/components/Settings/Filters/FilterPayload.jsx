@@ -26,16 +26,6 @@ function FilterPayload(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    currentRating: state.movie.rating,
-    currentGenre: state.movie.genre,
-    allGenres: state.allGenres,
-  }
-);
-
-export default connect(mapStateToProps, null)(FilterPayload);
-
 FilterPayload.propTypes = {
   ratingPoints: PropTypes.array,
   currentRating: PropTypes.string,
@@ -49,3 +39,13 @@ FilterPayload.defaultProps = {
   currentGenre: '',
   allGenres: [],
 };
+
+const mapStateToProps = (state) => (
+  {
+    currentRating: state.movie.rating,
+    currentGenre: state.movie.genre,
+    allGenres: state.allGenres,
+  }
+);
+
+export default connect(mapStateToProps, null)(FilterPayload);

@@ -39,13 +39,6 @@ function Tab(props) {
   );
 }
 
-export default connect(null, {
-  addUiPageNum,
-  update,
-  defineSection,
-  showDetails,
-})(Tab);
-
 Tab.propTypes = {
   tabName: PropTypes.string,
   addUiPageNum: PropTypes.func,
@@ -61,3 +54,10 @@ Tab.defaultProps = {
   showDetails: () => { },
   update: () => { },
 };
+
+export default connect(null, {
+  addUiPageNum,
+  update,
+  defineSection,
+  showDetails,
+})(Tab);

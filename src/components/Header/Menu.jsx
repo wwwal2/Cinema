@@ -24,15 +24,6 @@ function Menu(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    page: state.status.uiPage,
-    cardsNum: state.cardsNum,
-  }
-);
-
-export default connect(mapStateToProps, null)(Menu);
-
 Menu.propTypes = {
   tabNames: PropTypes.array,
 };
@@ -44,3 +35,12 @@ Menu.defaultProps = {
     'Favorite',
   ],
 };
+
+const mapStateToProps = (state) => (
+  {
+    page: state.status.uiPage,
+    cardsNum: state.cardsNum,
+  }
+);
+
+export default connect(mapStateToProps, null)(Menu);

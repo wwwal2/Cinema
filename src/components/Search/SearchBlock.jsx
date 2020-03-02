@@ -61,14 +61,6 @@ function Search(props) {
   );
 }
 
-export default connect(null, {
-  addQuery,
-  defineSection,
-  update,
-  addUiPageNum,
-  showDetails,
-})(Search);
-
 Search.propTypes = {
   placeHolder: PropTypes.string,
   addQuery: PropTypes.func,
@@ -86,3 +78,11 @@ Search.defaultProps = {
   addUiPageNum: () => { },
   showDetails: () => { },
 };
+
+export default connect(null, {
+  addQuery,
+  defineSection,
+  update,
+  addUiPageNum,
+  showDetails,
+})(Search);

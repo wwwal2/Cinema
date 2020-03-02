@@ -37,8 +37,6 @@ function Button(props) {
   );
 }
 
-export default connect(null, { addUiPageNum, update })(Button);
-
 Button.propTypes = {
   page: PropTypes.node,
   btnClass: PropTypes.string,
@@ -54,3 +52,5 @@ Button.defaultProps = {
   update: () => { },
   disabled: false,
 };
+
+export default connect(null, { addUiPageNum, update })(Button);

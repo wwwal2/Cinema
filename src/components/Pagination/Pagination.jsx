@@ -25,16 +25,6 @@ function Pagination(props) {
   return null;
 }
 
-const mapStateToProps = (state) => (
-  {
-    totalPages: Math.ceil(state.status.totalResults / state.cardsNum[state.status.section]),
-    detailsTab: state.status.detailsTab,
-    currentPage: state.status.uiPage,
-  }
-);
-
-export default connect(mapStateToProps, null)(Pagination);
-
 Pagination.propTypes = {
   totalPages: PropTypes.number,
   detailsTab: PropTypes.bool,
@@ -46,3 +36,13 @@ Pagination.defaultProps = {
   totalPages: 1,
   currentPage: 1,
 };
+
+const mapStateToProps = (state) => (
+  {
+    totalPages: Math.ceil(state.status.totalResults / state.cardsNum[state.status.section]),
+    detailsTab: state.status.detailsTab,
+    currentPage: state.status.uiPage,
+  }
+);
+
+export default connect(mapStateToProps, null)(Pagination);

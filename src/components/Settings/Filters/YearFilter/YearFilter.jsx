@@ -85,10 +85,6 @@ function YearFilter(props) {
   );
 }
 
-const mapStateToProps = (state) => ({ storeYear: state.movie.year });
-
-export default connect(mapStateToProps, { addYear })(YearFilter);
-
 YearFilter.propTypes = {
   storeYear: PropTypes.string,
   maxYear: PropTypes.number,
@@ -104,3 +100,7 @@ YearFilter.defaultProps = {
   notification: 'Please input correct date from \'1950\' to \'2020\'',
   addYear: () => { },
 };
+
+const mapStateToProps = (state) => ({ storeYear: state.movie.year });
+
+export default connect(mapStateToProps, { addYear })(YearFilter);

@@ -96,21 +96,6 @@ function Card(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    favoriteIds: state.favorite.favoriteIds,
-    section: state.status.section,
-    detailsId: state.detailsId,
-  }
-);
-
-export default connect(mapStateToProps, {
-  addFavorite,
-  addDetailsId,
-  showDetails,
-  update,
-})(Card);
-
 Card.propTypes = {
   section: PropTypes.string,
   item: PropTypes.object,
@@ -132,3 +117,18 @@ Card.defaultProps = {
   showDetails: () => { },
   update: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favorite.favoriteIds,
+    section: state.status.section,
+    detailsId: state.detailsId,
+  }
+);
+
+export default connect(mapStateToProps, {
+  addFavorite,
+  addDetailsId,
+  showDetails,
+  update,
+})(Card);

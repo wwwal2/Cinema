@@ -68,15 +68,6 @@ function Buttons(props) {
   );
 }
 
-
-export default connect(null, {
-  update,
-  resetFilters,
-  resetOptions,
-  addUiPageNum,
-  defineSection,
-})(Buttons);
-
 Buttons.propTypes = {
   elementName: PropTypes.string,
   update: PropTypes.func,
@@ -92,3 +83,11 @@ Buttons.defaultProps = {
   resetOptions: () => { },
   defineSection: () => { },
 };
+
+export default connect(null, {
+  update,
+  resetFilters,
+  resetOptions,
+  addUiPageNum,
+  defineSection,
+})(Buttons);

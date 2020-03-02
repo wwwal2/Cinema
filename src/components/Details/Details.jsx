@@ -68,11 +68,6 @@ function Details(props) {
   );
 }
 
-const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
-
-
-export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);
-
 Details.propTypes = {
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
@@ -86,3 +81,7 @@ Details.defaultProps = {
   addFavorite: () => { },
   showDetails: () => { },
 };
+
+const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
+
+export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);

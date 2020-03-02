@@ -45,18 +45,6 @@ function OptionsController(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-  {
-    allControllers: {
-      main: state.cardsNum.main,
-      popular: state.cardsNum.popular,
-      favorite: state.cardsNum.favorite,
-    },
-  }
-);
-
-export default connect(mapStateToProps, { changePayloadNum })(OptionsController);
-
 OptionsController.propTypes = {
   label: PropTypes.string,
   target: PropTypes.string,
@@ -70,3 +58,15 @@ OptionsController.defaultProps = {
   allControllers: {},
   changePayloadNum: () => { },
 };
+
+const mapStateToProps = (state) => (
+  {
+    allControllers: {
+      main: state.cardsNum.main,
+      popular: state.cardsNum.popular,
+      favorite: state.cardsNum.favorite,
+    },
+  }
+);
+
+export default connect(mapStateToProps, { changePayloadNum })(OptionsController);

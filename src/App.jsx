@@ -37,17 +37,18 @@ function App(props) {
   );
 }
 
+App.propTypes = {
+  detailsTab: PropTypes.bool,
+};
+
+App.defaultProps = {
+  detailsTab: false,
+};
 
 const mapStateToProps = (state) => (
   {
     detailsTab: state.status.detailsTab,
   }
 );
-export default connect(mapStateToProps, null)(App);
 
-App.propTypes = {
-  detailsTab: PropTypes.bool,
-};
-App.defaultProps = {
-  detailsTab: false,
-};
+export default connect(mapStateToProps, null)(App);
