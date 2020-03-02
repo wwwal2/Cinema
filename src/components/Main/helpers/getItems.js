@@ -1,5 +1,5 @@
 import { calculateRequestProps } from '../../../utils';
-import { apiResultsPerPage } from '../../../constants/other';
+import { apiResultsPerPage } from '../../../constants/app';
 import Request from './Request';
 
 const request = new Request();

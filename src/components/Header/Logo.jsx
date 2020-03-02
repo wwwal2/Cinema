@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import logo from '../../../images/logo.png';
 import header from './Header.scss';
-import { sections } from '../../constants/other';
+import { sections } from '../../constants/app';
 
 import { addUiPageNum, update, defineSection } from '../../redux/actions';
 

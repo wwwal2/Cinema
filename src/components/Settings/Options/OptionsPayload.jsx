@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { options } from '../../../constants/other';
+import { options, sections } from '../../../constants/app';
 
 import OptionController from './OptionController';
 import Buttons from '../Buttons';
@@ -8,9 +8,9 @@ import Buttons from '../Buttons';
 export default function OptionsPayload() {
   return (
     <div>
-      <OptionController label="Main page card limit:" target="main" />
-      <OptionController label="Popular page card limit:" target="popular" />
-      <OptionController label="Favorite page card limit:" target="favorite" />
+      <OptionController label="Main page card limit:" target={sections.main} />
+      <OptionController label="Popular page card limit:" target={sections.popular} />
+      <OptionController label="Favorite page card limit:" target={sections.favorite} />
       <Buttons elementName={options} />
     </div>
   );

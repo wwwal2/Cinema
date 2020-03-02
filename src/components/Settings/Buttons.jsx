@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { filters, sections } from '../../constants/other';
+import { filters, sections } from '../../constants/app';
 
 
 import {

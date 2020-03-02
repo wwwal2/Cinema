@@ -3,7 +3,7 @@ import onlyNumbers from './onlyNumbers';
 import calculateRequestProps from './calculateRequestProps';
 import codeGenre from './codeGenre';
 import paginationShape from './paginationShape';
-import parsePayloadArray from './parsePayloadArray';
+import makeRecitation from './makeRecitation';
 import checkFavorite from './checkFavorite';
 import saveSettings from './saveSettings';
 import checkSavedSettings from './checkSavedSettings';
@@ -20,7 +20,7 @@ export {
   calculateRequestProps,
   codeGenre,
   paginationShape,
-  parsePayloadArray,
+  makeRecitation,
   checkFavorite,
   saveSettings,
   checkSavedSettings,

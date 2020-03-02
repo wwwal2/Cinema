@@ -1,4 +1,4 @@
-import { currentCardsNum } from '../constants/other';
+import { currentCardsNum } from '../constants/app';
 
 export default {
   movie: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { filters, options } from '../../constants/other';
+import { filters, options } from '../../constants/app';
 import settingsStyles from './Settings.scss';
 
 import FilterPayload from './Filters';
@@ -9,7 +9,7 @@ export default class Filter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      settings: 'Filters',
+      settings: filters,
       hide: true,
     };
   }

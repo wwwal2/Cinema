@@ -8,7 +8,7 @@ import favoriteOff from '../../../images/starEmpty.png';
 import noPoster from '../../../images/noPoster.png';
 
 import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
-import { checkFavorite, parsePayloadArray } from '../../utils';
+import { checkFavorite, makeRecitation } from '../../utils';
 
 
 function Details(props) {
@@ -47,11 +47,11 @@ function Details(props) {
           <p className={details.shortText}>{`Release: ${item.release_date}`}</p>
           <p className={details.shortText}>
             <span>Production: </span>
-            {parsePayloadArray(item.production_countries, 'name')}
+            {makeRecitation(item.production_countries, 'name')}
           </p>
           <p className={details.shortText}>{`Budget: ${item.budget}$`}</p>
           <p className={details.shortText}>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</p>
-          <p className={details.shortText}>{parsePayloadArray(item.genres, 'name')}</p>
+          <p className={details.shortText}>{makeRecitation(item.genres, 'name')}</p>
           <article>
             <p>{item.overview}</p>
           </article>

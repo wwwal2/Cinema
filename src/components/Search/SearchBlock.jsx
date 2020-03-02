@@ -10,7 +10,7 @@ import {
   showDetails,
 } from '../../redux/actions';
 
-import { sections } from '../../constants/other';
+import { sections } from '../../constants/app';
 import search from './SearchBlock.scss';
 
 function Search(props) {

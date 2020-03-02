@@ -11,7 +11,7 @@ import {
   maxCardsNum,
   minCardsNum,
   changeStep,
-} from '../../../constants/other';
+} from '../../../constants/app';
 
 function OptionsController(props) {
   const {

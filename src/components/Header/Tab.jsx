@@ -8,7 +8,7 @@ import {
   defineSection,
   showDetails,
 } from '../../redux/actions';
-import { sections } from '../../constants/other';
+import { sections } from '../../constants/app';
 import header from './Header.scss';
 
 function Tab(props) {
