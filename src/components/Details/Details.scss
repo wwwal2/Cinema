@@ -54,17 +54,7 @@
   }
 }
 
-@media all and (min-height: 1000px) {
-  .informContainer {
-    font-size: 30px;
-  }
-
-  .poster {
-    height: 1000px;
-  }
-}
-
-@media all and (max-width: 800px) {
+@media all and (max-width: 800px), all and (min-height: 1000px) {
   .container {
     display: block;
     text-align: center;
