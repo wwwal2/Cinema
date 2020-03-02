@@ -6,12 +6,12 @@ import { createStore } from 'redux';
 import { checkSavedSettings } from './utils';
 
 import rootReducer from './redux/rootReducer';
-import defaultOptions from './defaultOptions';
+import defaultOptions from './redux/initialState';
 
 import App from './App';
 
-const initialState = checkSavedSettings(defaultOptions);
-const store = createStore(rootReducer, initialState,
+checkSavedSettings(defaultOptions);
+const store = createStore(rootReducer, checkSavedSettings(defaultOptions),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(

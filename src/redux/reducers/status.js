@@ -6,11 +6,9 @@ import {
   SHOW_DETAILS,
   ADD_URL_DATA,
 } from '../../constants/actionTypes';
-import defaultOptions from '../../defaultOptions';
+import initialState from '../initialState';
 
-const initialState = defaultOptions.status;
-
-export default (state = initialState, action) => {
+export default (state = initialState.status, action) => {
   switch (action.type) {
     case ADD_RESULTS:
       return {

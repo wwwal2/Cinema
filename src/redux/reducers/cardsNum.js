@@ -1,10 +1,8 @@
 import { saveSettings } from '../../utils';
 import { CHANGE_CARD_NUM, RESET_OPTIONS, ADD_URL_DATA } from '../../constants/actionTypes';
-import defaultOptions from '../../defaultOptions';
+import initialState from '../initialState';
 
-const initialState = defaultOptions.cardsNum;
-
-export default (state = initialState, action) => {
+export default (state = initialState.cardsNum, action) => {
   switch (action.type) {
     case CHANGE_CARD_NUM:
       saveSettings('cardsNum', state, state[action.target] + action.payload, action.target);
