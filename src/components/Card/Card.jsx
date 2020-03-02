@@ -61,13 +61,9 @@ function Card(props) {
         <img
           role="button"
           alt="favorite"
-          src={
-            favorite
-              ? favoriteOn
-              : favoriteOff
-          }
+          src={favorite ? favoriteOn : favoriteOff}
           className={card.favorite}
-          onClick={() => toggleFavorite()}
+          onClick={toggleFavorite}
         />
       </section>
       <h3>

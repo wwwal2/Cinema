@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { checkLimit } from '../../../utils';
 
-import options from './OptionsPayload.scss';
+import options from './Options.scss';
 import { changePayloadNum } from '../../../redux/actions';
 
 import {

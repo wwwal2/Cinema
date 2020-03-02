@@ -5,7 +5,7 @@ import { options, sections } from '../../../constants/app';
 import OptionController from './OptionController';
 import Buttons from '../Buttons';
 
-export default function OptionsPayload() {
+export default function Options() {
   return (
     <div>
       <OptionController label="Main page card limit:" target={sections.main} />

@@ -41,7 +41,7 @@ function Details(props) {
             alt="favorite"
             src={favorite ? favoriteOn : favoriteOff}
             className={details.favorite}
-            onClick={() => toggleFavorite()}
+            onClick={toggleFavorite}
           />
           <h2>{item.title}</h2>
           <p className={details.shortText}>{`Release: ${item.release_date}`}</p>

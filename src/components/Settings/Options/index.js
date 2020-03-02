@@ -1,3 +1,3 @@
-import component from './OptionsPayload';
+import component from './Options';
 
 export default component;
