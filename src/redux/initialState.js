@@ -1,3 +1,5 @@
+import { currentCardsNum } from '../constants/other';
+
 export default {
   movie: {
     year: ' ',
@@ -12,10 +14,10 @@ export default {
     section: 'main',
   },
   cardsNum: {
-    main: 8,
-    popular: 8,
-    favorite: 8,
-    search: 20,
+    main: currentCardsNum,
+    popular: currentCardsNum,
+    favorite: currentCardsNum,
+    search: currentCardsNum,
   },
   favorite: {
     favoriteMovies: [],
