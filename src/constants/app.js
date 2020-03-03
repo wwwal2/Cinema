@@ -13,10 +13,20 @@ export const sections = {
   favorite: 'favorite',
   search: 'search',
 };
+
 export const movieData = {
   year: 'year',
   genre: 'genre',
   rating: 'rating',
 };
+
+export const statusData = {
+  totalResults: 'totalResults',
+  uiPage: 'uiPage',
+  updateCounter: 'updateCounter',
+  detailsTab: 'detailsTab',
+  section: 'section',
+};
+
 export const filters = 'Filters';
 export const options = 'Options';

@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 import makePayload from './helpers/makePayload';
 import { decodePath, calculatePath } from '../../utils';
+import { statusData } from '../../constants/app';
 
 import Request from './helpers/Request';
 import {
-  addResults,
+  addStatusData,
   addAllGenres,
-  showDetails,
   addUrlData,
 } from '../../redux/actions';
 
@@ -29,8 +29,8 @@ class Main extends React.Component {
   async componentDidMount() {
     const {
       addAllGenres,
-      addResults,
       addUrlData,
+      addStatusData,
       location: { search },
     } = this.props;
 
@@ -39,9 +39,8 @@ class Main extends React.Component {
     addUrlData(decodePath(search));
 
     const { allProps } = this.props;
-
     const payload = await makePayload(allProps);
-    addResults(payload.totalResults);
+    addStatusData(statusData.totalResults, payload.totalResults);
     this.updateState('items', payload.items);
   }
 
@@ -50,15 +49,14 @@ class Main extends React.Component {
       allProps,
       updateCounter,
       detailsId,
-      addResults,
-      showDetails,
+      addStatusData,
       briefStatus,
       history,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
-      addResults(payload.totalResults);
+      addStatusData(statusData.totalResults, payload.totalResults);
       this.updateState('items', payload.items);
       history.push(calculatePath(briefStatus));
     }
@@ -66,7 +64,7 @@ class Main extends React.Component {
     if (prevProps.detailsId !== detailsId) {
       const details = await this.request.getDetails(detailsId);
       this.updateState('details', details);
-      showDetails(true);
+      addStatusData(statusData.detailsTab, true);
     }
   }
 
@@ -95,10 +93,9 @@ Main.propTypes = {
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
-  addResults: PropTypes.func,
-  showDetails: PropTypes.func,
   detailsTab: PropTypes.bool,
   addUrlData: PropTypes.func,
+  addStatusData: PropTypes.func,
 };
 
 Main.defaultProps = {
@@ -109,10 +106,9 @@ Main.defaultProps = {
   allProps: {},
   updateCounter: 0,
   detailsId: 0,
-  addResults: () => { },
   addAllGenres: () => { },
-  showDetails: () => { },
   addUrlData: () => { },
+  addStatusData: () => { },
 };
 
 const mapStateToProps = (state) => (
@@ -134,8 +130,7 @@ const mapStateToProps = (state) => (
 );
 
 export default connect(mapStateToProps, {
-  addResults,
   addAllGenres,
-  showDetails,
   addUrlData,
+  addStatusData,
 })(Main);

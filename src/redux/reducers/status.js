@@ -5,6 +5,7 @@ import {
   UPDATE,
   SHOW_DETAILS,
   ADD_URL_DATA,
+  ADD_STATUS_DATA,
 } from '../../constants/actionTypes';
 import initialState from '../initialState';
 
@@ -14,6 +15,11 @@ export default (state = initialState.status, action) => {
       return {
         ...state,
         totalResults: action.payload,
+      };
+    case ADD_STATUS_DATA:
+      return {
+        ...state,
+        [action.target]: action.payload,
       };
     case ADD_UI_PAGE_NUM:
       return {
