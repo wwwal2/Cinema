@@ -2,9 +2,6 @@ import { saveSettings } from '../../utils';
 import initialState from '../initialState';
 
 import {
-  // ADD_RATING,
-  // ADD_GENRE,
-  // ADD_YEAR,
   RESET_FILTERS,
   ADD_URL_DATA,
   ADD_MOVIE_DATA,
@@ -12,27 +9,6 @@ import {
 
 export default (state = initialState.movie, action) => {
   switch (action.type) {
-    // case ADD_RATING:
-    //   saveSettings('movie', state, action.payload, 'rating');
-    //   return {
-    //     ...state,
-    //     rating: action.payload,
-    //   };
-
-    // case ADD_YEAR:
-    //   saveSettings('movie', state, action.payload, 'year');
-    //   return {
-    //     ...state,
-    //     year: action.payload,
-    //   };
-
-    // case ADD_GENRE:
-    //   saveSettings('movie', state, action.payload, 'genre');
-    //   return {
-    //     ...state,
-    //     genre: action.payload,
-    //   };
-
     case RESET_FILTERS:
       saveSettings('movie', initialState);
       return {
@@ -40,6 +16,7 @@ export default (state = initialState.movie, action) => {
       };
 
     case ADD_MOVIE_DATA:
+      saveSettings('movie', state, action.target, action.payload);
       return {
         ...state,
         [action.target]: action.payload,

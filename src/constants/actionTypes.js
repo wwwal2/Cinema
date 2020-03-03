@@ -1,6 +1,3 @@
-export const ADD_RATING = 'ADD_RATING';
-export const ADD_GENRE = 'ADD_GENRE';
-export const ADD_YEAR = 'ADD_YEAR';
 export const ADD_ALL_GENRES = 'ADD_ALL_GENRES';
 export const ADD_RESULTS = 'ADD_RESULTS';
 export const ADD_UI_PAGE_NUM = 'ADD_UI_PAGE_NUM';
