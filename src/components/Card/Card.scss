@@ -1,26 +1,14 @@
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  justify-items: center;
   background-color: #ffffff;
   color: #404040;
   font-family: Ubuntu, sans-serif;
   box-shadow: 0px 1px 13px -3px #000000;
   border-radius: 5px;
   width: 100%;
+  height: 100%;
   margin: 0;
-}
-
-.favorite {
-  filter: drop-shadow(5px 5px 5px #222);
-  align-self: flex-end;
-  height: 30px;
-  width: 30px;
-  border: none;
-  &:hover {
-    cursor: pointer;
-  }
 }
 
 .favoriteContainer {
@@ -28,28 +16,45 @@
   width: 100%;
   justify-content: flex-end;
   align-items: end;
+  align-self: baseline;
+
+  .favoriteImg {
+    align-self: flex-end;
+    height: 30px;
+    width: 30px;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .notification {
+    opacity: 0;
+    height: 20px;
+    border-bottom: 3px solid black;
+  }
+
+  .show {
+    opacity: 1;
+    color: #008080;
+    height: 20px;
+    border-bottom: 3px solid #008080;
+  }
 }
 
-.notification {
-  opacity: 0;
-  height: 20px;
-  border-bottom: 3px solid black;
-}
-
-.show {
-  opacity: 1;
-  background-color: #ffffff;
-  color: #008080;
-  height: 20px;
-  border-bottom: 3px solid #008080;
-}
-
-
-.text {
-  margin: 0px 12px;
+.label {
+  width: 90%;
+  text-align: center;
 }
 
 .poster {
   cursor: pointer;
 }
 
+.description {
+  margin: 0px 12px;
+}
+
+.rate {
+  align-self: end;
+}

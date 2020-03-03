@@ -20,7 +20,7 @@
     margin: 0;
     padding: 0;
 
-    .tabs {
+    .tab {
       width: 100%;
       height: inherit;
       cursor: pointer;
@@ -36,6 +36,11 @@
         transition: all 0.4s ease 0s;
       }
     }
+    .active {
+      background: #434343;
+      letter-spacing: 1px;
+      transition: all 0.4s ease 0s;
+    }
   }
 }
 
@@ -46,7 +51,7 @@
     }
     .menuContainer {
       height: 70px;
-      .tabs {
+      .tab {
         font-size: 25px;
       }
     }

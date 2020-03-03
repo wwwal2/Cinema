@@ -7,10 +7,15 @@ import {
   addStatusData,
 } from '../../redux/actions';
 import { sections, statusData } from '../../constants/app';
-import header from './Header.scss';
+import { tab, active } from './Header.scss';
 
 function Tab(props) {
-  const { tabName, update, addStatusData } = props;
+  const {
+    tabName,
+    update,
+    addStatusData,
+    currentSection,
+  } = props;
 
   const changeTab = (value) => {
     addStatusData(statusData.uiPage, 1);
@@ -22,7 +27,7 @@ function Tab(props) {
   return (
     <button
       key={tabName}
-      className={header.tabs}
+      className={currentSection === tabName.toLowerCase() ? `${tab} ${active}` : tab}
       onClick={() => changeTab(tabName)}
       type="button"
     >
@@ -33,14 +38,21 @@ function Tab(props) {
 
 Tab.propTypes = {
   tabName: PropTypes.string,
+  currentSection: PropTypes.string,
   addStatusData: PropTypes.func,
   update: PropTypes.func,
 };
 
 Tab.defaultProps = {
   tabName: '',
+  currentSection: '',
   addStatusData: () => { },
   update: () => { },
 };
 
-export default connect(null, { addStatusData, update })(Tab);
+const mapStateToProps = (state) => (
+  {
+    currentSection: state.status.section,
+  }
+);
+export default connect(mapStateToProps, { addStatusData, update })(Tab);

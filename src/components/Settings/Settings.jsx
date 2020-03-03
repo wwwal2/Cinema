@@ -16,12 +16,8 @@ export default class Filter extends React.Component {
 
   toggle(info) {
     const { settings, hide } = this.state;
-    if (info === settings || hide === true) {
-      this.setState({
-        hide: !hide,
-      });
-    }
     this.setState({
+      hide: info === settings || hide ? !hide : hide,
       settings: info,
     });
   }
