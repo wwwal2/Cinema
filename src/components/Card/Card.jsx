@@ -54,18 +54,18 @@ function Card(props) {
   };
 
   return (
-    <figure className={card.card}>
+    <div className={card.card}>
       <section className={card.favoriteContainer}>
         <div className={notification}>Added to favorite</div>
         <img
           role="button"
           alt="favorite"
           src={favorite ? favoriteOn : favoriteOff}
-          className={card.favorite}
+          className={card.favoriteImg}
           onClick={toggleFavorite}
         />
       </section>
-      <h3>
+      <h3 className={card.label}>
         {
           `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
         }
@@ -77,17 +77,17 @@ function Card(props) {
         onError={() => setImagePath(noPoster)}
         onClick={() => iconClick(item.id)}
       />
-      <p className={card.text}>
+      <p className={card.description}>
         {
           item.overview.length > textLength
             ? `${item.overview.substr(0, textLength)}...`
             : item.overview
         }
       </p>
-      <p>
+      <p className={card.rate}>
         {`Rate ${item.vote_average}`}
       </p>
-    </figure>
+    </div>
   );
 }
 
