@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 
 import logo from '../../images/logo.png';
 import header from './Header.scss';
-import { sections } from '../../constants/app';
+import { sections, statusData } from '../../constants/app';
 
-import { addUiPageNum, update, defineSection } from '../../redux/actions';
+import { update, addStatusData } from '../../redux/actions';
 
 function Logo(props) {
   const {
-    addUiPageNum,
+    addStatusData,
     update,
-    defineSection,
   } = props;
 
   const changePage = () => {
-    addUiPageNum(1);
-    defineSection(sections.main);
+    addStatusData(statusData.uiPage, 1);
+    addStatusData(statusData.section, sections.main);
     update();
   };
 
@@ -27,15 +26,13 @@ function Logo(props) {
 }
 
 Logo.propTypes = {
-  addUiPageNum: PropTypes.func,
+  addStatusData: PropTypes.func,
   update: PropTypes.func,
-  defineSection: PropTypes.func,
 };
 
 Logo.defaultProps = {
-  addUiPageNum: () => { },
-  defineSection: () => { },
+  addStatusData: () => { },
   update: () => { },
 };
 
-export default connect(null, { addUiPageNum, update, defineSection })(Logo);
+export default connect(null, { addStatusData, update })(Logo);

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { filters, sections } from '../../constants/app';
+import { filters, sections, statusData } from '../../constants/app';
 
 
 import {
@@ -17,8 +17,7 @@ import {
   update,
   resetFilters,
   resetOptions,
-  addUiPageNum,
-  defineSection,
+  addStatusData,
 } from '../../redux/actions';
 
 function Buttons(props) {
@@ -27,12 +26,12 @@ function Buttons(props) {
     resetOptions,
     elementName,
     update,
-    defineSection,
+    addStatusData,
   } = props;
 
 
   const onApply = () => {
-    defineSection(sections.main);
+    addStatusData(statusData.section, sections.main);
     update();
   };
 
@@ -42,7 +41,7 @@ function Buttons(props) {
     } else {
       resetOptions();
     }
-    defineSection(sections.main);
+    addStatusData(statusData.section, sections.main);
     update();
   };
 
@@ -73,7 +72,7 @@ Buttons.propTypes = {
   update: PropTypes.func,
   resetFilters: PropTypes.func,
   resetOptions: PropTypes.func,
-  defineSection: PropTypes.func,
+  addStatusData: PropTypes.func,
 };
 
 Buttons.defaultProps = {
@@ -81,13 +80,12 @@ Buttons.defaultProps = {
   update: () => { },
   resetFilters: () => { },
   resetOptions: () => { },
-  defineSection: () => { },
+  addStatusData: () => { },
 };
 
 export default connect(null, {
   update,
   resetFilters,
   resetOptions,
-  addUiPageNum,
-  defineSection,
+  addStatusData,
 })(Buttons);

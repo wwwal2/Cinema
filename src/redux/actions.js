@@ -1,15 +1,12 @@
 import {
   ADD_ALL_GENRES,
   ADD_RESULTS,
-  ADD_UI_PAGE_NUM,
   TOGGLE_FAVORITE,
-  SHOW_DETAILS,
   ADD_DETAILS_ID,
   UPDATE,
   RESET_FILTERS,
   RESET_OPTIONS,
   CHANGE_CARD_NUM,
-  DEFINE_SECTION,
   ADD_QUERY,
   ADD_URL_DATA,
   ADD_MOVIE_DATA,
@@ -18,11 +15,8 @@ import {
 
 export const addAllGenres = (payload) => ({ type: ADD_ALL_GENRES, payload });
 export const addResults = (payload) => ({ type: ADD_RESULTS, payload });
-export const addUiPageNum = (payload) => ({ type: ADD_UI_PAGE_NUM, payload });
 export const addFavorite = (payload) => ({ type: TOGGLE_FAVORITE, payload });
 export const addDetailsId = (payload) => ({ type: ADD_DETAILS_ID, payload });
-export const showDetails = (payload) => ({ type: SHOW_DETAILS, payload });
-export const defineSection = (payload) => ({ type: DEFINE_SECTION, payload });
 export const addQuery = (payload) => ({ type: ADD_QUERY, payload });
 export const update = () => ({ type: UPDATE });
 export const resetFilters = () => ({ type: RESET_FILTERS });

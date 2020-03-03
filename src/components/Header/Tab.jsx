@@ -3,27 +3,19 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  addUiPageNum,
   update,
-  defineSection,
-  showDetails,
+  addStatusData,
 } from '../../redux/actions';
-import { sections } from '../../constants/app';
+import { sections, statusData } from '../../constants/app';
 import header from './Header.scss';
 
 function Tab(props) {
-  const {
-    tabName,
-    addUiPageNum,
-    defineSection,
-    update,
-    showDetails,
-  } = props;
+  const { tabName, update, addStatusData } = props;
 
   const changeTab = (value) => {
-    addUiPageNum(1);
-    defineSection(sections[value.toLowerCase()]);
-    showDetails(false);
+    addStatusData(statusData.uiPage, 1);
+    addStatusData(statusData.section, sections[value.toLowerCase()]);
+    addStatusData(statusData.detailsTab, false);
     update();
   };
 
@@ -41,23 +33,14 @@ function Tab(props) {
 
 Tab.propTypes = {
   tabName: PropTypes.string,
-  addUiPageNum: PropTypes.func,
-  defineSection: PropTypes.func,
-  showDetails: PropTypes.func,
+  addStatusData: PropTypes.func,
   update: PropTypes.func,
 };
 
 Tab.defaultProps = {
   tabName: '',
-  addUiPageNum: () => { },
-  defineSection: () => { },
-  showDetails: () => { },
+  addStatusData: () => { },
   update: () => { },
 };
 
-export default connect(null, {
-  addUiPageNum,
-  update,
-  defineSection,
-  showDetails,
-})(Tab);
+export default connect(null, { addStatusData, update })(Tab);

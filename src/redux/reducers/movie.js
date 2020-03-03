@@ -10,9 +10,9 @@ import {
 export default (state = initialState.movie, action) => {
   switch (action.type) {
     case RESET_FILTERS:
-      saveSettings('movie', initialState);
+      saveSettings('movie', initialState.movie);
       return {
-        ...initialState,
+        ...initialState.movie,
       };
 
     case ADD_MOVIE_DATA:

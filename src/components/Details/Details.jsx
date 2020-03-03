@@ -7,8 +7,9 @@ import favoriteOn from '../../images/starFilled.png';
 import favoriteOff from '../../images/starEmpty.png';
 import noPoster from '../../images/noPoster.png';
 
-import { addFavorite, addDetailsId, showDetails } from '../../redux/actions';
+import { addFavorite, addDetailsId, addStatusData } from '../../redux/actions';
 import { checkFavorite, makeRecitation } from '../../utils';
+import { statusData } from '../../constants/app';
 
 
 function Details(props) {
@@ -16,7 +17,7 @@ function Details(props) {
     item,
     favoriteIds,
     addFavorite,
-    showDetails,
+    addStatusData,
   } = props;
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
@@ -33,7 +34,7 @@ function Details(props) {
           className={details.poster}
           alt="no poster to this movie"
           src={imagePath}
-          onClick={() => showDetails(false)}
+          onClick={() => addStatusData(statusData.detailsTab, false)}
           onError={() => setImagePath(noPoster)}
         />
         <section className={details.informContainer}>
@@ -59,7 +60,7 @@ function Details(props) {
       </div>
       <button
         type="button"
-        onClick={() => showDetails(false)}
+        onClick={() => addStatusData(statusData.detailsTab, false)}
         className={details.backBtn}
       >
         BACK
@@ -72,16 +73,16 @@ Details.propTypes = {
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
-  showDetails: PropTypes.func,
+  addStatusData: PropTypes.func,
 };
 
 Details.defaultProps = {
   item: { title: 'empty' },
   favoriteIds: [],
   addFavorite: () => { },
-  showDetails: () => { },
+  addStatusData: () => { },
 };
 
 const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
 
-export default connect(mapStateToProps, { addFavorite, addDetailsId, showDetails })(Details);
+export default connect(mapStateToProps, { addFavorite, addDetailsId, addStatusData })(Details);
