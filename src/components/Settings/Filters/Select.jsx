@@ -1,22 +1,46 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addRating, addGenre } from '../../../redux/actions';
-
-import generateSelect from './generateSelect';
+import { addMovieData } from '../../../redux/actions';
+import filters from './FilterPayload.scss';
 
 function Select(props) {
   const {
     selected,
     allGenres,
     ratingPoints,
-    addRating,
-    addGenre,
+    addMovieData,
   } = props;
-
+  const genres = allGenres.map((genre) => genre.name);
+  const generateSelect = (options, current, id) => {
+    return (
+      <section className={filters.gridContainer}>
+        <select
+          onChange={(event) => addMovieData(id, event.target.value)}
+          value={current}
+          id={id}
+          className={filters.select}
+        >
+          {
+            options.map((option) => {
+              return (
+                <option value={option} key={option}>
+                  {option}
+                </option>
+              );
+            })
+          }
+        </select>
+        <label htmlFor={id} className={filters.label}>
+          {`select ${id}`}
+        </label>
+      </section>
+    );
+  };
   return (
     ratingPoints[0]
-      ? generateSelect(ratingPoints, selected, addRating, 'rating')
-      : generateSelect(allGenres.map((genre) => genre.name), selected, addGenre, 'genre')
+      ? generateSelect(ratingPoints, selected, 'rating')
+      : generateSelect(genres, selected, 'genre')
   );
 }
 
@@ -25,15 +49,15 @@ Select.propTypes = {
   ratingPoints: PropTypes.array,
   addRating: PropTypes.func,
   addGenre: PropTypes.func,
+  addMovieData: PropTypes.func,
   readTheStore: PropTypes.object,
 };
 
 Select.defaultProps = {
   allGenres: [],
   ratingPoints: [],
-  addRating: () => { },
-  addGenre: () => { },
+  addMovieData: () => { },
   readTheStore: {},
 };
 
-export default connect(null, { addRating, addGenre })(Select);
+export default connect(null, { addMovieData })(Select);

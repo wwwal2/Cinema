@@ -1,11 +1,10 @@
 import {
   ADD_RESULTS,
-  ADD_UI_PAGE_NUM,
-  DEFINE_SECTION,
   UPDATE,
-  SHOW_DETAILS,
   ADD_URL_DATA,
+  ADD_STATUS_DATA,
 } from '../../constants/actionTypes';
+
 import initialState from '../initialState';
 
 export default (state = initialState.status, action) => {
@@ -15,20 +14,10 @@ export default (state = initialState.status, action) => {
         ...state,
         totalResults: action.payload,
       };
-    case ADD_UI_PAGE_NUM:
+    case ADD_STATUS_DATA:
       return {
         ...state,
-        uiPage: action.payload,
-      };
-    case DEFINE_SECTION:
-      return {
-        ...state,
-        section: action.payload,
-      };
-    case SHOW_DETAILS:
-      return {
-        ...state,
-        detailsTab: action.payload,
+        [action.target]: action.payload,
       };
     case UPDATE:
       return {

@@ -4,13 +4,11 @@ import { connect } from 'react-redux';
 
 import {
   addQuery,
-  defineSection,
   update,
-  addUiPageNum,
-  showDetails,
+  addStatusData,
 } from '../../redux/actions';
 
-import { sections } from '../../constants/app';
+import { sections, statusData } from '../../constants/app';
 import search from './SearchBlock.scss';
 
 function Search(props) {
@@ -18,10 +16,8 @@ function Search(props) {
   const {
     placeHolder,
     addQuery,
-    defineSection,
     update,
-    addUiPageNum,
-    showDetails,
+    addStatusData,
   } = props;
 
   const userInput = (event) => {
@@ -31,10 +27,10 @@ function Search(props) {
 
   const submit = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
-      addUiPageNum(1);
       addQuery(encodeURIComponent(searchInput.trim()));
-      defineSection(sections.search);
-      showDetails(false);
+      addStatusData(statusData.uiPage, 1);
+      addStatusData(statusData.section, sections.search);
+      addStatusData(statusData.detailsTab, false);
       update();
       setSearchInput('');
     }
@@ -64,25 +60,15 @@ function Search(props) {
 Search.propTypes = {
   placeHolder: PropTypes.string,
   addQuery: PropTypes.func,
-  defineSection: PropTypes.func,
-  showDetails: PropTypes.func,
   update: PropTypes.func,
-  addUiPageNum: PropTypes.func,
+  addStatusData: PropTypes.func,
 };
 
 Search.defaultProps = {
   placeHolder: 'Search movies',
   addQuery: () => { },
-  defineSection: () => { },
   update: () => { },
-  addUiPageNum: () => { },
-  showDetails: () => { },
+  addStatusData: () => { },
 };
 
-export default connect(null, {
-  addQuery,
-  defineSection,
-  update,
-  addUiPageNum,
-  showDetails,
-})(Search);
+export default connect(null, { addQuery, update, addStatusData })(Search);

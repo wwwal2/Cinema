@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import arrowLeft from '../../../images/arr3.png';
-import arrowRight from '../../../images/arr2.png';
+import arrowLeft from '../../images/arr3.png';
+import arrowRight from '../../images/arr2.png';
 import { inRange } from '../../utils';
 import pagination from './Pagination.scss';
 

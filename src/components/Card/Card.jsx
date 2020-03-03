@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import card from './Card.scss';
-import favoriteOn from '../../../images/starFilled.png';
-import favoriteOff from '../../../images/starEmpty.png';
-import noPoster from '../../../images/noPoster.png';
+import favoriteOn from '../../images/starFilled.png';
+import favoriteOff from '../../images/starEmpty.png';
+import noPoster from '../../images/noPoster.png';
 
 import {
   addFavorite,
   addDetailsId,
-  showDetails,
+  addStatusData,
   update,
 } from '../../redux/actions';
 
 import { checkFavorite } from '../../utils';
+import { textLength, statusData } from '../../constants/app';
 
 
 function Card(props) {
@@ -24,7 +25,7 @@ function Card(props) {
     favoriteIds,
     detailsId,
     addDetailsId,
-    showDetails,
+    addStatusData,
     update,
     addFavorite,
   } = props;
@@ -32,8 +33,6 @@ function Card(props) {
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
   const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
   const [notification, setNotification] = useState(card.notification);
-
-  const textLength = 200;
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -50,7 +49,7 @@ function Card(props) {
   const iconClick = (id) => {
     addDetailsId(id);
     if (id === detailsId) {
-      showDetails(true);
+      addStatusData(statusData.detailsTab, true);
     }
   };
 
@@ -97,7 +96,7 @@ Card.propTypes = {
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
   detailsId: PropTypes.number,
-  showDetails: PropTypes.func,
+  addStatusData: PropTypes.func,
   update: PropTypes.func,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
@@ -110,7 +109,7 @@ Card.defaultProps = {
   detailsId: 0,
   addFavorite: () => { },
   addDetailsId: () => { },
-  showDetails: () => { },
+  addStatusData: () => { },
   update: () => { },
 };
 
@@ -125,6 +124,6 @@ const mapStateToProps = (state) => (
 export default connect(mapStateToProps, {
   addFavorite,
   addDetailsId,
-  showDetails,
+  addStatusData,
   update,
 })(Card);

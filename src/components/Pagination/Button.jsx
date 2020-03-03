@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { addUiPageNum, update } from '../../redux/actions';
-
+import { addStatusData, update } from '../../redux/actions';
+import { statusData } from '../../constants/app';
 
 import pagination from './Pagination.scss';
 
@@ -11,13 +11,13 @@ function Button(props) {
   const {
     page,
     btnClass,
-    addUiPageNum,
+    addStatusData,
     update,
     disabled,
   } = props;
 
   const changePage = (value) => {
-    addUiPageNum(value);
+    addStatusData(statusData.uiPage, value);
     update();
   };
 
@@ -40,7 +40,7 @@ function Button(props) {
 Button.propTypes = {
   page: PropTypes.node,
   btnClass: PropTypes.string,
-  addUiPageNum: PropTypes.func,
+  addStatusData: PropTypes.func,
   update: PropTypes.func,
   disabled: PropTypes.bool,
 };
@@ -48,9 +48,9 @@ Button.propTypes = {
 Button.defaultProps = {
   page: 0,
   btnClass: '',
-  addUiPageNum: () => { },
+  addStatusData: () => { },
   update: () => { },
   disabled: false,
 };
 
-export default connect(null, { addUiPageNum, update })(Button);
+export default connect(null, { addStatusData, update })(Button);

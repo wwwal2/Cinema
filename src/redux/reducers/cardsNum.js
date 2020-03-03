@@ -15,9 +15,9 @@ export default (state = initialState.cardsNum, action) => {
         [action.target]: state[action.target] + action.payload,
       };
     case RESET_OPTIONS:
-      saveSettings('cardsNum', initialState);
+      saveSettings('cardsNum', initialState.cardsNum);
       return {
-        ...initialState,
+        ...initialState.cardsNum,
       };
     case ADD_URL_DATA:
       const { section, cardsNum } = action.payload;
