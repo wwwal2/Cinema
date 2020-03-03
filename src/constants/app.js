@@ -7,12 +7,16 @@ export const apiResultsPerPage = 20;
 
 export const textLength = 200;
 
-
 export const sections = {
   main: 'main',
   popular: 'popular',
   favorite: 'favorite',
   search: 'search',
+};
+export const movieData = {
+  year: 'year',
+  genre: 'genre',
+  rating: 'rating',
 };
 export const filters = 'Filters';
 export const options = 'Options';

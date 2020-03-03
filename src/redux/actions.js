@@ -15,6 +15,7 @@ import {
   DEFINE_SECTION,
   ADD_QUERY,
   ADD_URL_DATA,
+  ADD_MOVIE_DATA,
 } from '../constants/actionTypes';
 
 export const addRating = (payload) => ({ type: ADD_RATING, payload });
@@ -33,6 +34,7 @@ export const resetFilters = () => ({ type: RESET_FILTERS });
 export const resetOptions = () => ({ type: RESET_OPTIONS });
 export const addUrlData = (payload) => ({ type: ADD_URL_DATA, payload });
 
+export const addMovieData = (target, payload) => ({ type: ADD_MOVIE_DATA, target, payload });
 
 export const changePayloadNum = (payload, target, distance) => (
   {

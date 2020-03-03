@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 
 import filters from '../FilterPayload.scss';
 
-import { addYear } from '../../../../redux/actions';
+import { addMovieData } from '../../../../redux/actions';
 import { validateLimits, onlyNumbers } from '../../../../utils';
+import { movieData } from '../../../../constants/app';
 
 function useHook(initialValue) {
   const [value, setValue] = useState(initialValue);
@@ -25,7 +26,7 @@ function YearFilter(props) {
     maxYear,
     minYear,
     notification,
-    addYear,
+    addMovieData,
   } = props;
 
   const showNotification = () => {
@@ -47,7 +48,7 @@ function YearFilter(props) {
   const submitCheck = (event) => {
     if (event.key === 'Enter') {
       if (validateLimits(maxYear, minYear, inputYear.value)) {
-        addYear(inputYear.value);
+        addMovieData(movieData.year, inputYear.value);
       } else {
         showNotification();
       }
@@ -89,7 +90,7 @@ YearFilter.propTypes = {
   maxYear: PropTypes.number,
   minYear: PropTypes.number,
   notification: PropTypes.string,
-  addYear: PropTypes.func,
+  addMovieData: PropTypes.func,
 };
 
 YearFilter.defaultProps = {
@@ -97,9 +98,9 @@ YearFilter.defaultProps = {
   maxYear: 2020,
   minYear: 1950,
   notification: 'Please input correct date from \'1950\' to \'2020\'',
-  addYear: () => { },
+  addMovieData: () => { },
 };
 
 const mapStateToProps = (state) => ({ storeYear: state.movie.year });
 
-export default connect(mapStateToProps, { addYear })(YearFilter);
+export default connect(mapStateToProps, { addMovieData })(YearFilter);
