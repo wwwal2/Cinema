@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import card from './Card.scss';
 import favoriteOn from '../../images/starFilled.png';
-import favoriteOff from '../../images/starEmpty.png';
+import favoriteOff from '../../images/starEmpty3.png';
 import noPoster from '../../images/noPoster.png';
 
 import {
