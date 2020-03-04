@@ -4,6 +4,9 @@
   gap: 10px;
   font-family: Ubuntu, sans-serif;
   flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+
 
   .logo {
     height: 7vh;
@@ -19,6 +22,11 @@
     height: 7vh;
     margin: 0;
     padding: 0;
+
+    .link {
+      width: 100%;
+      height: inherit;
+    }
 
     .tab {
       width: 100%;
@@ -64,8 +72,6 @@
 
     .logo {
       grid-column: 1 / 2;
-      margin: auto;
-      height: 7vh;
     }
 
     .menuContainer {

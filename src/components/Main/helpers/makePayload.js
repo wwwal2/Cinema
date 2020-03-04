@@ -11,10 +11,11 @@ export default async (props) => {
       search,
     },
     movie: { year, rating, genre },
-    status: { uiPage, section },
+    status: { section },
     favorite: { favoriteMovies },
     allGenres,
     searchQuery,
+    uiPage,
   } = props;
   switch (section) {
     case sections.main:
@@ -26,7 +27,7 @@ export default async (props) => {
           rating,
         ],
         main,
-        uiPage,
+        uiPage[section],
       );
       return mainPayload;
 
@@ -35,7 +36,7 @@ export default async (props) => {
         'getPopular',
         [],
         popular,
-        uiPage,
+        uiPage[section],
       );
       return popularPayload;
 
@@ -44,13 +45,13 @@ export default async (props) => {
         'findMovie',
         [searchQuery],
         search,
-        uiPage,
+        uiPage[section],
       );
       return searchPayload;
 
     case sections.favorite:
       const layout = calculateRequestProps(
-        uiPage,
+        uiPage[section],
         favorite,
         apiResultsPerPage,
       );

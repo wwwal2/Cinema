@@ -2,21 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { update, addStatusData } from '../../redux/actions';
-import { statusData } from '../../constants/app';
+import { changeUiPage, update } from '../../redux/actions';
 
 import pagination from './Pagination.scss';
 
 function Arrow(props) {
   const {
-    addStatusData,
+    changeUiPage,
     update,
     image,
     page,
+    section,
   } = props;
 
   const changePage = (myPage) => {
-    addStatusData(statusData.uiPage, myPage);
+    changeUiPage(section, myPage);
     update();
   };
 
@@ -28,15 +28,20 @@ function Arrow(props) {
 Arrow.propTypes = {
   page: PropTypes.number,
   image: PropTypes.string,
-  addStatusData: PropTypes.func,
+  changeUiPage: PropTypes.func,
   update: PropTypes.func,
+  section: PropTypes.string,
 };
 
 Arrow.defaultProps = {
   page: 0,
   image: '',
-  addStatusData: () => { },
+  section: '',
+  changeUiPage: () => { },
   update: () => { },
 };
 
-export default connect(null, { update, addStatusData })(Arrow);
+const mapStateToProps = (state) => (
+  { section: state.status.section }
+);
+export default connect(mapStateToProps, { update, changeUiPage })(Arrow);

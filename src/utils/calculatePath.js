@@ -13,8 +13,6 @@ export default (status) => {
       return `${acc}${keys[index]}=${item}`;
     }
     return `${acc}&${keys[index]}=${item}`;
-  }, 'status?');
-
-
+  }, '/status?');
   return urlPath;
 };

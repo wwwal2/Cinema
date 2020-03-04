@@ -8,7 +8,6 @@ export default {
   },
   status: {
     totalResults: 0,
-    uiPage: 1,
     updateCounter: 0,
     detailsTab: false,
     section: 'main',
@@ -18,6 +17,12 @@ export default {
     popular: currentCardsNum,
     favorite: currentCardsNum,
     search: currentCardsNum,
+  },
+  uiPage: {
+    main: 1,
+    popular: 1,
+    favorite: 1,
+    search: 1,
   },
   favorite: {
     favoriteMovies: [],

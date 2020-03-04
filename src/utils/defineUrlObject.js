@@ -1,19 +1,18 @@
 export default (object) => {
   const {
     section,
-    page,
+    uiPage,
     cardsNum,
     year,
     genre,
     rating,
     query,
   } = object;
-
   switch (object.section) {
     case 'main':
       return {
         section,
-        page,
+        page: uiPage.main,
         cardsNum,
         year,
         genre,
@@ -23,7 +22,7 @@ export default (object) => {
     case 'popular':
       return {
         section,
-        page,
+        page: uiPage.popular,
         cardsNum,
       };
 
@@ -31,12 +30,13 @@ export default (object) => {
       return {
         section,
         cardsNum,
+        page: uiPage.favorite,
       };
 
     case 'search':
       return {
         section,
-        page,
+        page: uiPage.search,
         cardsNum,
         query,
       };

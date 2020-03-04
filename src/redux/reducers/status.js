@@ -25,10 +25,9 @@ export default (state = initialState.status, action) => {
         updateCounter: state.updateCounter + 1,
       };
     case ADD_URL_DATA:
-      const { section, page } = action.payload;
+      const { section } = action.payload;
       return {
         ...state,
-        uiPage: Number(page) || state.uiPage,
         section: section || state.section,
       };
     default:

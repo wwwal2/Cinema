@@ -50,7 +50,7 @@ function Details(props) {
             <span>Production: </span>
             {makeRecitation(item.production_countries, 'name')}
           </p>
-          <p className={details.shortText}>{`Budget: ${item.budget}$`}</p>
+          <p className={details.shortText}>{`Budget: $${item.budget}`}</p>
           <p className={details.shortText}>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</p>
           <p className={details.shortText}>{makeRecitation(item.genres, 'name')}</p>
           <article>
