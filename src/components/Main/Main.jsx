@@ -32,6 +32,8 @@ class Main extends React.Component {
       addUrlData,
       addStatusData,
       location: { search },
+      briefStatus,
+      history,
     } = this.props;
 
     const genres = await this.request.getGenres();
@@ -42,6 +44,7 @@ class Main extends React.Component {
     const payload = await makePayload(allProps);
     addStatusData(statusData.totalResults, payload.totalResults);
     this.updateState('items', payload.items);
+    history.push(calculatePath(briefStatus));
   }
 
   async componentDidUpdate(prevProps) {

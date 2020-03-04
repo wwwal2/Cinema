@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import {
-  update,
-  addStatusData,
-} from '../../redux/actions';
+import { update, addStatusData } from '../../redux/actions';
 import { sections, statusData } from '../../constants/app';
-import { tab, active } from './Header.scss';
+import { link, tab, active } from './Header.scss';
 
 function Tab(props) {
   const {
@@ -18,21 +16,23 @@ function Tab(props) {
   } = props;
 
   const changeTab = (value) => {
-    addStatusData(statusData.uiPage, 1);
     addStatusData(statusData.section, sections[value.toLowerCase()]);
     addStatusData(statusData.detailsTab, false);
     update();
   };
 
   return (
-    <button
-      key={tabName}
-      className={currentSection === tabName.toLowerCase() ? `${tab} ${active}` : tab}
-      onClick={() => changeTab(tabName)}
-      type="button"
-    >
-      {tabName}
-    </button>
+    <Link to="/" className={link}>
+      <button
+        key={tabName}
+        className={currentSection === tabName.toLowerCase() ? `${tab} ${active}` : tab}
+        onClick={() => changeTab(tabName)}
+        type="button"
+      >
+        {tabName}
+      </button>
+    </Link>
+
   );
 }
 

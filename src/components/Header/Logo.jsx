@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import logo from '../../images/logo.png';
 import header from './Header.scss';
@@ -21,7 +22,9 @@ function Logo(props) {
   };
 
   return (
-    <img alt="logo" src={logo} className={header.logo} onClick={changePage} />
+    <Link to="/">
+      <img alt="logo" src={logo} className={header.logo} onClick={changePage} />
+    </Link>
   );
 }
 
