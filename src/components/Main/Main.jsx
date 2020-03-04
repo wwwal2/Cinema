@@ -119,7 +119,7 @@ const mapStateToProps = (state) => (
     updateCounter: state.status.updateCounter,
     briefStatus: {
       section: state.status.section,
-      page: state.status.uiPage,
+      uiPage: state.uiPage,
       cardsNum: state.cardsNum[state.status.section],
       year: state.movie.year,
       genre: state.movie.genre,

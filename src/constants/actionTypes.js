@@ -10,4 +10,4 @@ export const ADD_QUERY = 'ADD_QUERY';
 export const ADD_URL_DATA = 'ADD_URL_DATA';
 export const ADD_MOVIE_DATA = 'ADD_MOVIE_DATA';
 export const ADD_STATUS_DATA = 'ADD_STATUS_DATA';
-export const ADD_UI_PAGE = 'ADD_UI_PAGE';
+export const CHANGE_UI_PAGE = 'CHANGE_UI_PAGE';

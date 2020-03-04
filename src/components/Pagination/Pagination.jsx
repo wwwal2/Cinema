@@ -41,7 +41,7 @@ const mapStateToProps = (state) => (
   {
     totalPages: Math.ceil(state.status.totalResults / state.cardsNum[state.status.section]),
     detailsTab: state.status.detailsTab,
-    currentPage: state.status.uiPage,
+    currentPage: state.uiPage[state.status.section],
   }
 );
 

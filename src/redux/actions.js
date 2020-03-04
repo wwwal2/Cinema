@@ -11,6 +11,7 @@ import {
   ADD_URL_DATA,
   ADD_MOVIE_DATA,
   ADD_STATUS_DATA,
+  CHANGE_UI_PAGE,
 } from '../constants/actionTypes';
 
 export const addAllGenres = (payload) => ({ type: ADD_ALL_GENRES, payload });
@@ -26,6 +27,8 @@ export const addUrlData = (payload) => ({ type: ADD_URL_DATA, payload });
 export const addMovieData = (target, payload) => ({ type: ADD_MOVIE_DATA, target, payload });
 
 export const addStatusData = (target, payload) => ({ type: ADD_STATUS_DATA, target, payload });
+
+export const changeUiPage = (target, payload) => ({ type: CHANGE_UI_PAGE, target, payload });
 
 export const changePayloadNum = (payload, target, distance) => (
   {

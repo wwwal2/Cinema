@@ -8,7 +8,6 @@ export default {
   },
   status: {
     totalResults: 0,
-    uiPage: 1,
     updateCounter: 0,
     detailsTab: false,
     section: 'main',

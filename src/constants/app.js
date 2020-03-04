@@ -28,5 +28,6 @@ export const statusData = {
   section: 'section',
 };
 
+export const uiPage = 'uiPage';
 export const filters = 'Filters';
 export const options = 'Options';

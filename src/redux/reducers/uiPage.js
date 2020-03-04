@@ -1,9 +1,9 @@
-import { ADD_UI_PAGE, ADD_URL_DATA } from '../../constants/actionTypes';
+import { CHANGE_UI_PAGE, ADD_URL_DATA } from '../../constants/actionTypes';
 import initialState from '../initialState';
 
 export default (state = initialState.uiPage, action) => {
   switch (action.type) {
-    case ADD_UI_PAGE:
+    case CHANGE_UI_PAGE:
       return {
         ...state,
         [action.target]: action.payload,
