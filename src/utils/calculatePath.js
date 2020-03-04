@@ -14,7 +14,5 @@ export default (status) => {
     }
     return `${acc}&${keys[index]}=${item}`;
   }, '/status?');
-
-  console.log('urlPath:', urlPath);
   return urlPath;
 };
