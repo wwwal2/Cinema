@@ -5,6 +5,7 @@ import favorite from './favorite';
 import status from './status';
 import searchQuery from './searchQuery';
 import detailsId from './detailsId';
+import uiPage from './uiPage';
 
 export {
   movie,
@@ -14,4 +15,5 @@ export {
   status,
   searchQuery,
   detailsId,
+  uiPage,
 };

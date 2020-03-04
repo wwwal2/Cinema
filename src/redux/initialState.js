@@ -19,6 +19,12 @@ export default {
     favorite: currentCardsNum,
     search: currentCardsNum,
   },
+  uiPage: {
+    main: 1,
+    popular: 1,
+    favorite: 1,
+    search: 1,
+  },
   favorite: {
     favoriteMovies: [],
     favoriteIds: [],
