@@ -4,12 +4,14 @@
   background-color: #ffffff;
   color: #404040;
   font-family: Ubuntu, sans-serif;
-  box-shadow: 0px 1px 13px -3px #000000;
+  box-shadow: 0 1px 13px -3px #000000;
   border-radius: 5px;
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   margin: 0;
   max-height: 700px;
+  flex-basis: 300px;
+  height: 600px;
 }
 
 .favoriteContainer {
@@ -53,7 +55,7 @@
 }
 
 .description {
-  margin: 0px 12px;
+  margin: 0 12px;
 }
 
 .rate {

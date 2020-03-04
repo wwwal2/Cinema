@@ -30,7 +30,7 @@ Arrow.propTypes = {
   image: PropTypes.string,
   changeUiPage: PropTypes.func,
   update: PropTypes.func,
-  section: PropTypes.func,
+  section: PropTypes.string,
 };
 
 Arrow.defaultProps = {

@@ -27,10 +27,8 @@
   transition: all 0.3s ease 0s;
   cursor: pointer;
   &:hover {
-    color: #404040;
     font-weight: 700;
     letter-spacing: 3px;
-    background: none;
     transition: all 0.3s ease 0s;
   }
 }
