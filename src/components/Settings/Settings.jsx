@@ -14,7 +14,22 @@ export default class Filter extends React.Component {
     };
   }
 
-  toggle(info) {
+  // static getDerivedStateFromProps() {
+  //   document.addEventListener('click', this.outsideClick, false);
+  // }
+
+  // componentWillUnmount() {
+  //   document.removeEventListener('click', this.outsideClick, false);
+  // }
+
+  outsideClick = (event) => {
+    if (this.node.contains(event.target)) {
+      return;
+    }
+    console.log('hello:');
+  }
+
+  toggle = (info) => {
     const { settings, hide } = this.state;
     this.setState({
       hide: info === settings || hide ? !hide : hide,
@@ -49,7 +64,11 @@ export default class Filter extends React.Component {
         >
           {options}
         </button>
-        <section className={settingsStyles[`hide-${hide}`]}>
+        <section
+          ref={(node) => { this.node = node; }}
+          className={settingsStyles[`hide-${hide}`]}
+          onClick={this.outsideClick}
+        >
           {
             settings === filters
               ? <FilterPayload />

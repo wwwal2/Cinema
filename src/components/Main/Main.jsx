@@ -55,10 +55,8 @@ class Main extends React.PureComponent {
       addStatusData,
       briefStatus,
       history,
-      location: { search },
     } = this.props;
 
-    console.log('search:', search);
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addStatusData(statusData.totalResults, payload.totalResults);

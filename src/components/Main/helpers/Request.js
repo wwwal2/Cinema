@@ -9,7 +9,7 @@ export default class Request {
     this.findUrl = `${this.basicUrl}search/movie?api_key=${this.key}&language=en-US`;
     this.keyNames = [
       '&page=',
-      '&year=',
+      '&primary_release_year=',
       '&with_genres=',
       '&vote_average.gte=',
       '&vote_average.lte=',

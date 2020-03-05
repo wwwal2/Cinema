@@ -30,23 +30,24 @@ function YearFilter(props) {
     setTimerId(timer);
   };
 
-  const keyCheck = (event) => {
-    const { value } = event.target;
-    if (onlyNumbers(value)) {
-      setInputYear(value);
-    }
-  };
-
-  const submit = (event) => {
-    console.log('event:', event.key);
-    if (event.key === 'Enter' || !event.key) {
-      if (validateLimits(maxYear, minYear, inputYear) || !inputYear) {
+  const receiveKey = ({ key }) => {
+    if (key === 'Enter' || !key) {
+      if (validateLimits(maxYear, minYear, inputYear)) {
         addMovieData(movieData.year, inputYear);
       } else {
         showNotification();
+        setInputYear('');
       }
-      setInputYear('');
     }
+  };
+
+  const changeValue = ({ target: { value } }) => {
+    setInputYear(onlyNumbers(value));
+  };
+
+  const clearInput = () => {
+    setInputYear('');
+    addMovieData(movieData.year, '');
   };
 
   return (
@@ -59,9 +60,10 @@ function YearFilter(props) {
             value={inputYear}
             type="text"
             placeholder={storeYear}
-            onChange={keyCheck}
-            onKeyPress={submit}
-            onBlur={submit}
+            onKeyPress={receiveKey}
+            onChange={changeValue}
+            onBlur={receiveKey}
+            onFocus={clearInput}
           />
           <label
             htmlFor="filterInput"
@@ -91,7 +93,7 @@ YearFilter.defaultProps = {
   storeYear: '',
   maxYear: 2020,
   minYear: 1950,
-  notification: 'Please input correct date from \'1950\' to \'2020\'',
+  notification: 'Please input date from \'1950\' to \'2020\'',
   addMovieData: () => { },
 };
 
