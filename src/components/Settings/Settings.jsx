@@ -14,19 +14,21 @@ export default class Filter extends React.Component {
     };
   }
 
-  // static getDerivedStateFromProps() {
-  //   document.addEventListener('click', this.outsideClick, false);
-  // }
+  componentDidMount() {
+    document.addEventListener('click', this.outsideClick, false);
+  }
 
-  // componentWillUnmount() {
-  //   document.removeEventListener('click', this.outsideClick, false);
-  // }
+  componentWillUnmount() {
+    document.removeEventListener('click', this.outsideClick, false);
+  }
 
   outsideClick = (event) => {
     if (this.node.contains(event.target)) {
       return;
     }
-    console.log('hello:');
+    this.setState({
+      hide: true,
+    });
   }
 
   toggle = (info) => {
@@ -41,7 +43,11 @@ export default class Filter extends React.Component {
     const { settings, hide } = this.state;
 
     return (
-      <section className={settingsStyles.container}>
+      <section
+        className={settingsStyles.container}
+        ref={(node) => { this.node = node; }}
+        onClick={this.outsideClick}
+      >
         <button
           type="button"
           className={
@@ -65,9 +71,7 @@ export default class Filter extends React.Component {
           {options}
         </button>
         <section
-          ref={(node) => { this.node = node; }}
           className={settingsStyles[`hide-${hide}`]}
-          onClick={this.outsideClick}
         >
           {
             settings === filters

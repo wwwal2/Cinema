@@ -31,6 +31,9 @@ function YearFilter(props) {
   };
 
   const receiveKey = ({ key }) => {
+    if (!inputYear) {
+      return;
+    }
     if (key === 'Enter' || !key) {
       if (validateLimits(maxYear, minYear, inputYear)) {
         addMovieData(movieData.year, inputYear);
