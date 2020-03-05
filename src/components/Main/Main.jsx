@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import makePayload from './helpers/makePayload';
+import initRequest from './helpers/initRequest';
 import { decodePath, calculatePath } from '../../utils';
 import { statusData } from '../../constants/app';
 
@@ -14,14 +14,12 @@ import {
 } from '../../redux/actions';
 
 import Payload from './Payload';
-import Details from '../Details';
 
 class Main extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       items: [],
-      details: {},
     };
     this.request = new Request();
   }
@@ -38,7 +36,7 @@ class Main extends React.PureComponent {
     addAllGenres(genres.genres);
     addUrlData(decodePath(search));
     const { allProps } = this.props;
-    const payload = await makePayload(allProps);
+    const payload = await initRequest(allProps);
     addStatusData(statusData.totalResults, payload.totalResults);
     this.updateState('items', payload.items);
   }
@@ -54,7 +52,7 @@ class Main extends React.PureComponent {
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
-      const payload = await makePayload(allProps);
+      const payload = await initRequest(allProps);
       addStatusData(statusData.totalResults, payload.totalResults);
       this.updateState('items', payload.items);
       history.push(calculatePath(briefStatus));
@@ -76,13 +74,8 @@ class Main extends React.PureComponent {
   static whyDidYouRender = true;
 
   render() {
-    const { detailsTab } = this.props;
-    const { items, details } = this.state;
-    return (
-      details.id && detailsTab
-        ? <Details item={details} />
-        : <Payload items={items} />
-    );
+    const { items } = this.state;
+    return (<Payload items={items} />);
   }
 }
 
@@ -94,7 +87,6 @@ Main.propTypes = {
   updateCounter: PropTypes.number,
   detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
-  detailsTab: PropTypes.bool,
   addUrlData: PropTypes.func,
   addStatusData: PropTypes.func,
 };
@@ -103,7 +95,6 @@ Main.defaultProps = {
   history: {},
   location: {},
   briefStatus: {},
-  detailsTab: false,
   allProps: {},
   updateCounter: 0,
   detailsId: 0,
