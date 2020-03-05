@@ -16,7 +16,7 @@ import {
 import Payload from './Payload';
 import Details from '../Details';
 
-class Main extends React.Component {
+class Main extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,8 +55,10 @@ class Main extends React.Component {
       addStatusData,
       briefStatus,
       history,
+      location: { search },
     } = this.props;
 
+    console.log('search:', search);
     if (prevProps.updateCounter !== updateCounter) {
       const payload = await makePayload(allProps);
       addStatusData(statusData.totalResults, payload.totalResults);
@@ -76,6 +78,8 @@ class Main extends React.Component {
       [stateName]: items,
     });
   }
+
+  static whyDidYouRender = true;
 
   render() {
     const { detailsTab } = this.props;

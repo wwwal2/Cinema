@@ -8,18 +8,10 @@ import { addMovieData } from '../../../../redux/actions';
 import { validateLimits, onlyNumbers } from '../../../../utils';
 import { movieData } from '../../../../constants/app';
 
-function useHook(initialValue) {
-  const [value, setValue] = useState(initialValue);
-  function set(val) {
-    setValue(val);
-  }
-  return { value, set };
-}
-
 function YearFilter(props) {
-  const inputYear = useHook('');
-  const timerId = useHook('');
-  const hintPosition = useHook('hide');
+  const [inputYear, setInputYear] = useState('');
+  const [timerId, setTimerId] = useState('');
+  const [hintPosition, setHintPosition] = useState('hide');
 
   const {
     storeYear,
@@ -30,29 +22,30 @@ function YearFilter(props) {
   } = props;
 
   const showNotification = () => {
-    clearTimeout(timerId.value);
-    hintPosition.set('show');
+    clearTimeout(timerId);
+    setHintPosition('show');
     const timer = setTimeout(() => {
-      hintPosition.set('hide');
+      setHintPosition('hide');
     }, 5000);
-    timerId.set(timer);
+    setTimerId(timer);
   };
 
   const keyCheck = (event) => {
     const { value } = event.target;
     if (onlyNumbers(value)) {
-      inputYear.set(value);
+      setInputYear(value);
     }
   };
 
-  const submitCheck = (event) => {
-    if (event.key === 'Enter') {
-      if (validateLimits(maxYear, minYear, inputYear.value)) {
-        addMovieData(movieData.year, inputYear.value);
+  const submit = (event) => {
+    console.log('event:', event.key);
+    if (event.key === 'Enter' || !event.key) {
+      if (validateLimits(maxYear, minYear, inputYear) || !inputYear) {
+        addMovieData(movieData.year, inputYear);
       } else {
         showNotification();
       }
-      inputYear.set('');
+      setInputYear('');
     }
   };
 
@@ -63,11 +56,12 @@ function YearFilter(props) {
           <input
             id="filterInput"
             className={filters.filterInput}
-            value={inputYear.value}
+            value={inputYear}
             type="text"
             placeholder={storeYear}
-            onKeyPress={submitCheck}
             onChange={keyCheck}
+            onKeyPress={submit}
+            onBlur={submit}
           />
           <label
             htmlFor="filterInput"
@@ -77,7 +71,7 @@ function YearFilter(props) {
           </label>
         </div>
 
-        <div className={filters[hintPosition.value]}>
+        <div className={filters[hintPosition]}>
           {notification}
         </div>
       </div>

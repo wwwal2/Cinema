@@ -30,5 +30,7 @@ module.exports = {
     'no-unused-expressions': 0,
     'no-restricted-syntax': 0,
     'react-hooks/exhaustive-deps': 0,
+    'import/first': 0,
+    'global-require': 0,
   },
 };
