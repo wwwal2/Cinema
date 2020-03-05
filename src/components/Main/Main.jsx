@@ -32,19 +32,15 @@ class Main extends React.PureComponent {
       addUrlData,
       addStatusData,
       location: { search },
-      briefStatus,
-      history,
     } = this.props;
 
     const genres = await this.request.getGenres();
     addAllGenres(genres.genres);
     addUrlData(decodePath(search));
-
     const { allProps } = this.props;
     const payload = await makePayload(allProps);
     addStatusData(statusData.totalResults, payload.totalResults);
     this.updateState('items', payload.items);
-    history.push(calculatePath(briefStatus));
   }
 
   async componentDidUpdate(prevProps) {
