@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -7,57 +7,73 @@ import favoriteOn from '../../images/starFilled.png';
 import favoriteOff from '../../images/starEmpty.png';
 import noPoster from '../../images/noPoster.png';
 
+import Request from '../Main/helpers/Request';
 import { addFavorite, addDetailsId, addStatusData } from '../../redux/actions';
 import { checkFavorite, makeRecitation } from '../../utils';
 import { statusData } from '../../constants/app';
 
 
 function Details(props) {
+  const request = new Request();
+
   const {
-    item,
     favoriteIds,
     addFavorite,
     addStatusData,
+    detailsId,
   } = props;
 
-  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
-  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w500/${item.poster_path}`);
+  const [data, setData] = useState({});
+  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, data.id));
+  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w500/${data.poster_path}`);
+
+  useEffect(async () => {
+    const fetchData = async () => {
+      const result = await request.getDetails(detailsId);
+      setData(result);
+    };
+    fetchData();
+  }, []);
 
   const toggleFavorite = () => {
-    addFavorite(item);
+    addFavorite(data);
     setFavorite(!favorite);
   };
+
   return (
     <section className={details.wrapper}>
-      <div className={details.container}>
-        <img
-          className={details.poster}
-          alt="no poster to this movie"
-          src={imagePath}
-          onClick={() => addStatusData(statusData.detailsTab, false)}
-          onError={() => setImagePath(noPoster)}
-        />
-        <section className={details.informContainer}>
-          <img
-            alt="favorite"
-            src={favorite ? favoriteOn : favoriteOff}
-            className={details.favorite}
-            onClick={toggleFavorite}
-          />
-          <h2>{item.title}</h2>
-          <p className={details.shortText}>{`Release: ${item.release_date}`}</p>
-          <p className={details.shortText}>
-            <span>Production: </span>
-            {makeRecitation(item.production_countries, 'name')}
-          </p>
-          <p className={details.shortText}>{`Budget: $${item.budget}`}</p>
-          <p className={details.shortText}>{`Rating: ${item.vote_average} Votes: ${item.vote_count}`}</p>
-          <p className={details.shortText}>{makeRecitation(item.genres, 'name')}</p>
-          <article>
-            <p>{item.overview}</p>
-          </article>
-        </section>
-      </div>
+      {data.id
+        && (
+          <div className={details.container}>
+            <img
+              className={details.poster}
+              alt="no poster to this movie"
+              src={imagePath}
+              onClick={() => addStatusData(statusData.detailsTab, false)}
+              onError={() => setImagePath(noPoster)}
+            />
+            <section className={details.informContainer}>
+              <img
+                alt="favorite"
+                src={favorite ? favoriteOn : favoriteOff}
+                className={details.favorite}
+                onClick={toggleFavorite}
+              />
+              <h2>{data.title}</h2>
+              <p className={details.shortText}>{`Release: ${data.release_date}`}</p>
+              <p className={details.shortText}>
+                <span>Production: </span>
+                {makeRecitation(data.production_countries, 'name')}
+              </p>
+              <p className={details.shortText}>{`Budget: $${data.budget}`}</p>
+              <p className={details.shortText}>{`Rating: ${data.vote_average} Votes: ${data.vote_count}`}</p>
+              <p className={details.shortText}>{makeRecitation(data.genres, 'name')}</p>
+              <article>
+                <p>{data.overview}</p>
+              </article>
+            </section>
+          </div>
+        )}
       <button
         type="button"
         onClick={() => addStatusData(statusData.detailsTab, false)}
@@ -70,19 +86,24 @@ function Details(props) {
 }
 
 Details.propTypes = {
-  item: PropTypes.object,
+  detailsId: PropTypes.number,
   favoriteIds: PropTypes.array,
   addFavorite: PropTypes.func,
   addStatusData: PropTypes.func,
 };
 
 Details.defaultProps = {
-  item: { title: 'empty' },
+  detailsId: 0,
   favoriteIds: [],
   addFavorite: () => { },
   addStatusData: () => { },
 };
 
-const mapStateToProps = (state) => ({ favoriteIds: state.favorite.favoriteIds });
+const mapStateToProps = (state) => (
+  {
+    favoriteIds: state.favorite.favoriteIds,
+    detailsId: state.detailsId,
+  }
+);
 
 export default connect(mapStateToProps, { addFavorite, addDetailsId, addStatusData })(Details);

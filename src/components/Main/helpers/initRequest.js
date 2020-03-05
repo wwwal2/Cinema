@@ -1,6 +1,6 @@
 import { sections, apiResultsPerPage } from '../../../constants/app';
 import { codeGenre, calculateRequestProps } from '../../../utils';
-import getItems from './getItems';
+import getData from './getData';
 
 export default async (props) => {
   const {
@@ -19,7 +19,7 @@ export default async (props) => {
   } = props;
   switch (section) {
     case sections.main:
-      const mainPayload = await getItems(
+      const mainPayload = await getData(
         'getMovies',
         [
           year,
@@ -32,7 +32,7 @@ export default async (props) => {
       return mainPayload;
 
     case sections.popular:
-      const popularPayload = await getItems(
+      const popularPayload = await getData(
         'getPopular',
         [],
         popular,
@@ -41,7 +41,7 @@ export default async (props) => {
       return popularPayload;
 
     case sections.search:
-      const searchPayload = await getItems(
+      const searchPayload = await getData(
         'findMovie',
         [searchQuery],
         search,

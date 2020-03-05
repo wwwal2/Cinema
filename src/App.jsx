@@ -10,6 +10,7 @@ import style from './App.scss';
 
 import Header from './components/Header';
 import Main from './components/Main';
+import Details from './components/Details';
 import Footer from './components/Footer/Footer';
 import PageNotFound from './components/PageNotFound';
 
@@ -25,6 +26,7 @@ function App(props) {
         <Header />
         <Pagination />
         <Switch>
+          <Route exact path="/details/" component={Details} />
           <Route exact path="/:query/" component={Main} />
           <Route exact path="/" component={Main} />
           <Route component={PageNotFound} />

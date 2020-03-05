@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -15,7 +16,7 @@ import {
 } from '../../redux/actions';
 
 import { checkFavorite } from '../../utils';
-import { textLength, statusData } from '../../constants/app';
+import { textLength } from '../../constants/app';
 
 
 function Card(props) {
@@ -23,9 +24,9 @@ function Card(props) {
     section,
     item,
     favoriteIds,
-    detailsId,
     addDetailsId,
-    addStatusData,
+    // detailsId,
+    // addStatusData,statusData
     update,
     addFavorite,
   } = props;
@@ -33,6 +34,8 @@ function Card(props) {
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
   const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
   const [notification, setNotification] = useState(card.notification);
+
+  const history = useHistory();
 
   const toggleFavorite = () => {
     addFavorite(item);
@@ -48,9 +51,11 @@ function Card(props) {
 
   const iconClick = (id) => {
     addDetailsId(id);
-    if (id === detailsId) {
-      addStatusData(statusData.detailsTab, true);
-    }
+    history.push('/details/');
+
+    // if (id === detailsId) {
+    //   addStatusData(statusData.detailsTab, true);
+    // }
   };
 
   return (
@@ -95,8 +100,8 @@ Card.propTypes = {
   section: PropTypes.string,
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
-  detailsId: PropTypes.number,
-  addStatusData: PropTypes.func,
+  // detailsId: PropTypes.number,
+  // addStatusData: PropTypes.func,
   update: PropTypes.func,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
@@ -106,10 +111,10 @@ Card.defaultProps = {
   section: '',
   item: { title: 'empty' },
   favoriteIds: [],
-  detailsId: 0,
+  // detailsId: 0,
+  // addStatusData: () => { },
   addFavorite: () => { },
   addDetailsId: () => { },
-  addStatusData: () => { },
   update: () => { },
 };
 

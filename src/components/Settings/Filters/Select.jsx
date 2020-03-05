@@ -21,15 +21,13 @@ function Select(props) {
           id={id}
           className={filters.select}
         >
-          {
-            options.map((option) => {
-              return (
-                <option value={option} key={option}>
-                  {option}
-                </option>
-              );
-            })
-          }
+          {options.map((option) => {
+            return (
+              <option value={option} key={option}>
+                {option}
+              </option>
+            );
+          })}
         </select>
         <label htmlFor={id} className={filters.label}>
           {`select ${id}`}
@@ -37,11 +35,9 @@ function Select(props) {
       </section>
     );
   };
-  return (
-    ratingPoints[0]
-      ? generateSelect(ratingPoints, selected, 'rating')
-      : generateSelect(genres, selected, 'genre')
-  );
+  return ratingPoints[0]
+    ? generateSelect(ratingPoints, selected, 'rating')
+    : generateSelect(genres, selected, 'genre');
 }
 
 Select.propTypes = {
