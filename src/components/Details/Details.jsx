@@ -23,14 +23,15 @@ function Details(props) {
     detailsId,
   } = props;
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState(false);
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, data.id));
-  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w500/${data.poster_path}`);
+  const [imagePath, setImagePath] = useState('');
 
   useEffect(async () => {
     const fetchData = async () => {
       const result = await request.getDetails(detailsId);
       setData(result);
+      setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
     };
     fetchData();
   }, []);
@@ -42,14 +43,14 @@ function Details(props) {
 
   return (
     <section className={details.wrapper}>
-      {data.id
+      {data
         && (
           <div className={details.container}>
             <img
               className={details.poster}
               alt="no poster to this movie"
-              src={imagePath}
               onClick={() => addStatusData(statusData.detailsTab, false)}
+              src={imagePath}
               onError={() => setImagePath(noPoster)}
             />
             <section className={details.informContainer}>
