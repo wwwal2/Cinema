@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import details from './Details.scss';
 import favoriteOn from '../../images/starFilled.png';
@@ -14,8 +15,6 @@ import { statusData } from '../../constants/app';
 
 
 function Details(props) {
-  const request = new Request();
-
   const {
     favoriteIds,
     addFavorite,
@@ -23,15 +22,20 @@ function Details(props) {
     detailsId,
   } = props;
 
-  const [data, setData] = useState({});
-  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, data.id));
-  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w500/${data.poster_path}`);
+  const [data, setData] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [imagePath, setImagePath] = useState('');
+  const request = new Request();
+  const history = useHistory();
 
-  useEffect(async () => {
-    const fetchData = async () => {
-      const result = await request.getDetails(detailsId);
-      setData(result);
-    };
+  const fetchData = async () => {
+    const result = await request.getDetails(detailsId);
+    setData(result);
+    setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
+    setFavorite(checkFavorite(favoriteIds, result.id));
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -40,16 +44,21 @@ function Details(props) {
     setFavorite(!favorite);
   };
 
+  const goBack = () => {
+    addStatusData(statusData.detailsTab, false);
+    history.push('/');
+  };
+
   return (
     <section className={details.wrapper}>
-      {data.id
+      {data
         && (
           <div className={details.container}>
             <img
               className={details.poster}
               alt="no poster to this movie"
+              onClick={goBack}
               src={imagePath}
-              onClick={() => addStatusData(statusData.detailsTab, false)}
               onError={() => setImagePath(noPoster)}
             />
             <section className={details.informContainer}>
@@ -76,7 +85,7 @@ function Details(props) {
         )}
       <button
         type="button"
-        onClick={() => addStatusData(statusData.detailsTab, false)}
+        onClick={goBack}
         className={details.backBtn}
       >
         BACK

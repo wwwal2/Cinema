@@ -13,6 +13,7 @@ import calculatePath from './calculatePath';
 import decodePath from './decodePath';
 import inRange from './inRange';
 import localStorageExists from './localStorageExists';
+import combinePropsAndUrl from './combinePropsAndUrl';
 
 export {
   validateLimits,
@@ -30,4 +31,5 @@ export {
   decodePath,
   inRange,
   localStorageExists,
+  combinePropsAndUrl,
 };

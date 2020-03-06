@@ -16,7 +16,7 @@ import {
 } from '../../redux/actions';
 
 import { checkFavorite } from '../../utils';
-import { textLength } from '../../constants/app';
+import { textLength, statusData, sections } from '../../constants/app';
 
 
 function Card(props) {
@@ -25,8 +25,7 @@ function Card(props) {
     item,
     favoriteIds,
     addDetailsId,
-    // detailsId,
-    // addStatusData,statusData
+    addStatusData,
     update,
     addFavorite,
   } = props;
@@ -44,18 +43,15 @@ function Card(props) {
       setNotification(card.show);
       setTimeout(() => setNotification(card.notification), 1000);
     }
-    if (section === 'favorite') {
+    if (section === sections.favorite) {
       update();
     }
   };
 
   const iconClick = (id) => {
     addDetailsId(id);
+    addStatusData(statusData.detailsTab, true);
     history.push('/details/');
-
-    // if (id === detailsId) {
-    //   addStatusData(statusData.detailsTab, true);
-    // }
   };
 
   return (
@@ -100,8 +96,7 @@ Card.propTypes = {
   section: PropTypes.string,
   item: PropTypes.object,
   favoriteIds: PropTypes.array,
-  // detailsId: PropTypes.number,
-  // addStatusData: PropTypes.func,
+  addStatusData: PropTypes.func,
   update: PropTypes.func,
   addFavorite: PropTypes.func,
   addDetailsId: PropTypes.func,
@@ -111,8 +106,7 @@ Card.defaultProps = {
   section: '',
   item: { title: 'empty' },
   favoriteIds: [],
-  // detailsId: 0,
-  // addStatusData: () => { },
+  addStatusData: () => { },
   addFavorite: () => { },
   addDetailsId: () => { },
   update: () => { },
@@ -122,7 +116,6 @@ const mapStateToProps = (state) => (
   {
     favoriteIds: state.favorite.favoriteIds,
     section: state.status.section,
-    detailsId: state.detailsId,
   }
 );
 

@@ -7,6 +7,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import style from './App.scss';
+import { addUrlData } from './redux/actions';
 
 import Header from './components/Header';
 import Main from './components/Main';
@@ -19,7 +20,6 @@ import Pagination from './components/Pagination';
 
 function App(props) {
   const { detailsTab } = props;
-
   return (
     <Router>
       <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
@@ -32,7 +32,7 @@ function App(props) {
           <Route component={PageNotFound} />
         </Switch>
         <Pagination />
-        <footer className={style.buffer} />
+        <div className={style.buffer} />
       </div>
       <Footer />
     </Router>
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, { addUrlData })(App);
