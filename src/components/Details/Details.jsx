@@ -23,9 +23,8 @@ function Details(props) {
   } = props;
 
   const [data, setData] = useState(false);
-  const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, data.id));
+  const [favorite, setFavorite] = useState(false);
   const [imagePath, setImagePath] = useState('');
-
   const request = new Request();
   const history = useHistory();
 
@@ -33,6 +32,7 @@ function Details(props) {
     const result = await request.getDetails(detailsId);
     setData(result);
     setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
+    setFavorite(checkFavorite(favoriteIds, result.id));
   };
 
   useEffect(() => {
