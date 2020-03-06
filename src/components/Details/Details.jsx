@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import details from './Details.scss';
 import favoriteOn from '../../images/starFilled.png';
@@ -14,8 +15,6 @@ import { statusData } from '../../constants/app';
 
 
 function Details(props) {
-  const request = new Request();
-
   const {
     favoriteIds,
     addFavorite,
@@ -27,18 +26,27 @@ function Details(props) {
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, data.id));
   const [imagePath, setImagePath] = useState('');
 
-  useEffect(async () => {
-    const fetchData = async () => {
-      const result = await request.getDetails(detailsId);
-      setData(result);
-      setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
-    };
+  const request = new Request();
+  const history = useHistory();
+
+  const fetchData = async () => {
+    const result = await request.getDetails(detailsId);
+    setData(result);
+    setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
   const toggleFavorite = () => {
     addFavorite(data);
     setFavorite(!favorite);
+  };
+
+  const goBack = () => {
+    addStatusData(statusData.detailsTab, false);
+    history.push('/');
   };
 
   return (
@@ -49,7 +57,7 @@ function Details(props) {
             <img
               className={details.poster}
               alt="no poster to this movie"
-              onClick={() => addStatusData(statusData.detailsTab, false)}
+              onClick={goBack}
               src={imagePath}
               onError={() => setImagePath(noPoster)}
             />
@@ -77,7 +85,7 @@ function Details(props) {
         )}
       <button
         type="button"
-        onClick={() => addStatusData(statusData.detailsTab, false)}
+        onClick={goBack}
         className={details.backBtn}
       >
         BACK

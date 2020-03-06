@@ -3,8 +3,8 @@ import { container, label } from './ContentIsMissing.scss';
 
 export default function ContentIsMissing() {
   return (
-    <section className={container}>
-      <h1 className={label}>CONTENT IS MISSING</h1>
-    </section>
+    <main className={container}>
+      <h1 className={label}>NO CONTENT AVAILABLE</h1>
+    </main>
   );
 }

@@ -14,6 +14,7 @@ import {
 } from '../../redux/actions';
 
 import Payload from './Payload';
+import ContentIsMissing from '../ContentIsMissing';
 
 class Main extends React.PureComponent {
   constructor(props) {
@@ -75,7 +76,7 @@ class Main extends React.PureComponent {
 
   render() {
     const { items } = this.state;
-    return (<Payload items={items} />);
+    return items[0] ? <Payload items={items} /> : <ContentIsMissing />;
   }
 }
 
