@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import initRequest from './helpers/initRequest';
-import { decodePath, calculatePath } from '../../utils';
+import { decodePath, calculatePath, combinePropsAndUrl } from '../../utils';
 import { statusData } from '../../constants/app';
 
 import Request from './helpers/Request';
@@ -29,18 +29,19 @@ class Main extends React.PureComponent {
   async componentDidMount() {
     const {
       addAllGenres,
-      addUrlData,
       addStatusData,
+      addUrlData,
       location: { search },
       allProps,
     } = this.props;
 
     addUrlData(decodePath(search));
+    const urlProps = combinePropsAndUrl(allProps, decodePath(search));
 
     this.request.getGenres()
       .then((res) => {
         addAllGenres(res.genres);
-        return initRequest(allProps, res.genres);
+        return initRequest(urlProps, res.genres);
       })
       .then((res) => {
         addStatusData(statusData.totalResults, res.totalResults);
