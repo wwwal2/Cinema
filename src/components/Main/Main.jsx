@@ -21,6 +21,7 @@ class Main extends React.PureComponent {
     super(props);
     this.state = {
       items: [],
+      loading: true,
     };
     this.request = new Request();
   }
@@ -31,52 +32,55 @@ class Main extends React.PureComponent {
       addUrlData,
       addStatusData,
       location: { search },
+      allProps,
     } = this.props;
 
-    const genres = await this.request.getGenres();
-    addAllGenres(genres.genres);
     addUrlData(decodePath(search));
-    const { allProps } = this.props;
-    const payload = await initRequest(allProps);
-    addStatusData(statusData.totalResults, payload.totalResults);
-    this.updateState('items', payload.items);
+
+    this.request.getGenres()
+      .then((res) => {
+        addAllGenres(res.genres);
+        return initRequest(allProps, res.genres);
+      })
+      .then((res) => {
+        addStatusData(statusData.totalResults, res.totalResults);
+        this.setState({
+          items: res.items,
+          loading: false,
+        });
+      });
   }
 
   async componentDidUpdate(prevProps) {
     const {
       allProps,
-      updateCounter,
-      detailsId,
       addStatusData,
       briefStatus,
       history,
+      updateCounter,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
-      const payload = await initRequest(allProps);
-      addStatusData(statusData.totalResults, payload.totalResults);
-      this.updateState('items', payload.items);
-      history.push(calculatePath(briefStatus));
-    }
-
-    if (prevProps.detailsId !== detailsId) {
-      const details = await this.request.getDetails(detailsId);
-      this.updateState('details', details);
-      addStatusData(statusData.detailsTab, true);
+      initRequest(allProps)
+        .then((res) => {
+          addStatusData(statusData.totalResults, res.totalResults);
+          this.setState({
+            items: res.items,
+            loading: false,
+          });
+          history.push(calculatePath(briefStatus));
+        });
     }
   }
 
-  updateState = (stateName, items) => {
-    this.setState({
-      [stateName]: items,
-    });
+  updateState = (prop, value) => {
+    this.setState({ [prop]: value });
   }
 
-  static whyDidYouRender = true;
 
   render() {
-    const { items } = this.state;
-    return items[0] ? <Payload items={items} /> : <ContentIsMissing />;
+    const { items, loading } = this.state;
+    return (!items[0] && !loading) ? <ContentIsMissing /> : <Payload items={items} />;
   }
 }
 
@@ -86,7 +90,6 @@ Main.propTypes = {
   briefStatus: PropTypes.object,
   allProps: PropTypes.object,
   updateCounter: PropTypes.number,
-  detailsId: PropTypes.number,
   addAllGenres: PropTypes.func,
   addUrlData: PropTypes.func,
   addStatusData: PropTypes.func,
@@ -98,7 +101,6 @@ Main.defaultProps = {
   briefStatus: {},
   allProps: {},
   updateCounter: 0,
-  detailsId: 0,
   addAllGenres: () => { },
   addUrlData: () => { },
   addStatusData: () => { },

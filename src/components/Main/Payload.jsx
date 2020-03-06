@@ -6,7 +6,6 @@ import main from './Main.scss';
 
 export default function Payload(props) {
   const { items } = props;
-  console.log('items:', items);
   return (
     <main className={main.pageBody}>
       {items.map((item) => <Card key={item.id} item={item} />)}

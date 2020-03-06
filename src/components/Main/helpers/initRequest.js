@@ -2,7 +2,7 @@ import { sections, apiResultsPerPage } from '../../../constants/app';
 import { codeGenre, calculateRequestProps } from '../../../utils';
 import getData from './getData';
 
-export default async (props) => {
+export default async (props, genres) => {
   const {
     cardsNum: {
       main,
@@ -23,7 +23,7 @@ export default async (props) => {
         'getMovies',
         [
           year,
-          codeGenre(genre, allGenres),
+          codeGenre(genre, genres || allGenres),
           rating,
         ],
         main,

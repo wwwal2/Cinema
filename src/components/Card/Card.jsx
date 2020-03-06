@@ -16,7 +16,7 @@ import {
 } from '../../redux/actions';
 
 import { checkFavorite } from '../../utils';
-import { textLength, statusData } from '../../constants/app';
+import { textLength, statusData, sections } from '../../constants/app';
 
 
 function Card(props) {
@@ -43,7 +43,7 @@ function Card(props) {
       setNotification(card.show);
       setTimeout(() => setNotification(card.notification), 1000);
     }
-    if (section === 'favorite') {
+    if (section === sections.favorite) {
       update();
     }
   };
