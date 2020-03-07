@@ -18,6 +18,7 @@ function Logo(props) {
   const changePage = () => {
     addStatusData(statusData.uiPage, 1);
     addStatusData(statusData.section, sections.main);
+    addStatusData(statusData.detailsTab, false);
     update();
   };
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import {
   addQuery,
@@ -20,6 +21,7 @@ function Search(props) {
     addStatusData,
   } = props;
 
+  const history = useHistory();
   const userInput = (event) => {
     const { value } = event.target;
     setSearchInput(value);
@@ -32,6 +34,7 @@ function Search(props) {
       addStatusData(statusData.section, sections.search);
       addStatusData(statusData.detailsTab, false);
       update();
+      history.push('/');
       setSearchInput('');
     }
   };

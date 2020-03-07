@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { changeUiPage, update } from '../../redux/actions';
 
-import pagination from './Pagination.scss';
+import { arrow, enabled } from './Pagination.scss';
 
 function Arrow(props) {
   const {
@@ -13,6 +13,7 @@ function Arrow(props) {
     image,
     page,
     section,
+    active,
   } = props;
 
   const changePage = (myPage) => {
@@ -21,11 +22,17 @@ function Arrow(props) {
   };
 
   return (
-    <img alt="arrow" src={image} onClick={() => changePage(page)} className={pagination.arrow} />
+    <img
+      alt="arrow"
+      src={image}
+      onClick={() => changePage(page)}
+      className={active ? `${arrow} ${enabled}` : arrow}
+    />
   );
 }
 
 Arrow.propTypes = {
+  active: PropTypes.bool,
   page: PropTypes.number,
   image: PropTypes.string,
   changeUiPage: PropTypes.func,
@@ -34,6 +41,7 @@ Arrow.propTypes = {
 };
 
 Arrow.defaultProps = {
+  active: true,
   page: 0,
   image: '',
   section: '',
@@ -41,7 +49,4 @@ Arrow.defaultProps = {
   update: () => { },
 };
 
-const mapStateToProps = (state) => (
-  { section: state.status.section }
-);
-export default connect(mapStateToProps, { update, changeUiPage })(Arrow);
+export default connect(null, { update, changeUiPage })(Arrow);
