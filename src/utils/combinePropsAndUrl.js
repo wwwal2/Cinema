@@ -1,5 +1,5 @@
 export default (props, url) => {
-  return {
+  const updatedObject = url ? {
     ...props,
     movie: {
       genre: url.genre || props.movie.genre,
@@ -10,10 +10,14 @@ export default (props, url) => {
       section: url.section || props.status.section,
     },
     cardsNum: {
-      [url.section]: url.cardsNum,
+      ...props.cardsNum,
+      [url.section]: url.cardsNum || props.cardsNum[url.section],
     },
     uiPage: {
-      [url.section]: url.page,
+      ...props.uiPage,
+      [url.section]: url.page || props.cardsNum[url.section],
     },
-  };
+  }
+    : props;
+  return updatedObject;
 };

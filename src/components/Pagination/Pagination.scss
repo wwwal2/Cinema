@@ -9,6 +9,9 @@
 
 .arrow {
   height: inherit;
+}
+
+.enabled {
   &:hover {
     cursor: pointer;
   }

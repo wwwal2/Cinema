@@ -35,8 +35,8 @@ class Main extends React.PureComponent {
       allProps,
     } = this.props;
 
-    addUrlData(decodePath(search));
     const urlProps = combinePropsAndUrl(allProps, decodePath(search));
+    addUrlData(decodePath(search));
 
     this.request.getGenres()
       .then((res) => {
