@@ -10,10 +10,10 @@
   border: solid #404040;
   border-width: 0 0 4px 0;
   font-size: 2.5vh;
+  text-overflow: ellipsis;
 }
 
 .input::placeholder {
-  font-size: 2.5vh;
   text-align: center;
 }
 
