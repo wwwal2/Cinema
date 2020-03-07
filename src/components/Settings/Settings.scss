@@ -123,6 +123,26 @@
   }
 }
 
+@media all and (max-height: 700px) {
+  .container {
+    font-size: 17px;
+    height: 50px;
+  }
+
+  .actionBtnContainer {
+    height: 40px;
+  }
+
+  .hide-false {
+    top: 50px;
+    height: 125px;
+  }
+
+  .settingsBtn, .activeButton, .mainButton {
+    font-size: 17px;
+  }
+}
+
 @media all and (max-width: 800px) {
   .container {
     grid-row: 2;
@@ -131,7 +151,7 @@
 
   .hide-false {
     width: 180%;
-    left: 0.8vw;
+    left: 0;
   }
 }
 

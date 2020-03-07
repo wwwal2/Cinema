@@ -65,6 +65,20 @@
   }
 }
 
+@media all and (max-height: 700px) {
+  .container {
+    .logo {
+      height: 50px;
+    }
+    .menuContainer {
+      height: 50px;
+      .tab {
+        font-size: 17px;
+      }
+    }
+  }
+}
+
 @media all and (max-width: 800px) {
   .container {
     grid-template-columns: repeat(20, 1fr);
