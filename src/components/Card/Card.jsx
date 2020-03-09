@@ -49,7 +49,7 @@ function Card(props) {
 
   const imagePath = () => {
     return item.poster_path
-      ? `http://image.tmdb.org/t/p/w185/${item.poster_path}`
+      ? `https://image.tmdb.org/t/p/w185/${item.poster_path}`
       : noPoster;
   };
 

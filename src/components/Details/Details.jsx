@@ -37,7 +37,7 @@ function Details(props) {
       history.push('/pageNotFound/');
     } else {
       setData(result);
-      setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
+      setImagePath(`https://image.tmdb.org/t/p/w500/${result.poster_path}`);
       setFavorite(checkFavorite(favoriteIds, result.id));
     }
   };
