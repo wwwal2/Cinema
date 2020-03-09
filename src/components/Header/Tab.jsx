@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { update, addStatusData } from '../../redux/actions';
 import { sections, statusData } from '../../constants/app';
-import { link, tab, active } from './Header.scss';
+import styles from './Header.scss';
 
 function Tab(props) {
   const {
@@ -22,10 +22,10 @@ function Tab(props) {
   };
 
   return (
-    <Link to="/" className={link}>
+    <Link to="/" className={styles.link}>
       <button
         key={tabName}
-        className={currentSection === tabName.toLowerCase() ? `${tab} ${active}` : tab}
+        className={currentSection === tabName.toLowerCase() ? `${styles.tab} ${styles.active}` : styles.tab}
         onClick={() => changeTab(tabName)}
         type="button"
       >

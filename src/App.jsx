@@ -21,7 +21,7 @@ import Pagination from './components/Pagination';
 function App(props) {
   const { detailsTab } = props;
   return (
-    <Router basename="https://wwwal2.github.io/Cinema/dist/">
+    <Router basename="/">
       <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
         <Header />
         <Pagination />

@@ -1,10 +1,10 @@
 import React from 'react';
-import { container, label } from './ContentIsMissing.scss';
+import style from './ContentIsMissing.scss';
 
 export default function ContentIsMissing() {
   return (
-    <main className={container}>
-      <h1 className={label}>NO CONTENT AVAILABLE</h1>
+    <main className={style.container}>
+      <h1 className={style.label}>NO CONTENT AVAILABLE</h1>
     </main>
   );
 }

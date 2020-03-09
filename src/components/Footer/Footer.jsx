@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { footer, content, link } from './Footer.scss';
+import styles from './Footer.scss';
 
 export default function Footer(props) {
   const { created, email } = props;
   return (
-    <footer className={footer}>
-      <span className={content}>{created}</span>
-      <span className={content}>
+    <footer className={styles.footer}>
+      <span className={styles.content}>{created}</span>
+      <span className={styles.content}>
         <a
-          className={link}
+          className={styles.link}
           href={`mailto:${email}?subject=Mail to me`}
         >
           Send me an email

@@ -5,13 +5,7 @@ import PropTypes from 'prop-types';
 import { filters, sections, statusData } from '../../constants/app';
 
 
-import {
-  actionBtn,
-  reset,
-  apply,
-  actionBtnContainer,
-  resetLink,
-} from './Settings.scss';
+import { styles } from './Settings.scss';
 
 import {
   update,
@@ -46,12 +40,12 @@ function Buttons(props) {
   };
 
   return (
-    <section className={actionBtnContainer}>
+    <section className={styles.actionBtnContainer}>
 
       <button
         type="button"
         onClick={onApply}
-        className={`${actionBtn} ${apply}`}
+        className={`${styles.actionBtn} ${styles.apply}`}
       >
         Apply
       </button>
@@ -59,7 +53,7 @@ function Buttons(props) {
       <button
         type="button"
         onClick={() => onReset(elementName)}
-        className={`${actionBtn} ${reset} ${resetLink}`}
+        className={`${styles.actionBtn} ${styles.reset} ${styles.resetLink}`}
       >
         Reset
       </button>
