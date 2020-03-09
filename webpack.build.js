@@ -5,15 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const ASSET_PATH = process.env.ASSET_PATH || '/';
-
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js',
     hashDigestLength: 5,
-    publicPath: ASSET_PATH,
+    publicPath: '/',
   },
   devtool: 'source-map',
   devServer: {

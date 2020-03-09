@@ -58,3 +58,15 @@
     font-size: 20px;
   }
 }
+
+@media all and (max-height: 700px) {
+  .label {
+    font-size: 17px;
+  }
+  .filterInput {
+    font-size: 16px;
+  }
+  .select {
+    font-size: 16px;
+  }
+}

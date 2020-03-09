@@ -68,7 +68,7 @@ Search.propTypes = {
 };
 
 Search.defaultProps = {
-  placeHolder: 'Search movies',
+  placeHolder: 'Search',
   addQuery: () => { },
   update: () => { },
   addStatusData: () => { },

@@ -64,3 +64,15 @@
     font-size: 25px;
   }
 }
+
+@media all and (max-height: 700px) {
+  .button {
+    font-size: 17px;
+  }
+  .currentPage {
+    font-size: 17px;
+  }
+  .dots {
+    font-size: 17px;
+  }
+}
