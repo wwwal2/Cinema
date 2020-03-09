@@ -6,20 +6,16 @@ import filters from '../FilterPayload.scss';
 
 import { addMovieData } from '../../../../redux/actions';
 import { validateLimits, onlyNumbers } from '../../../../utils';
-import { movieData } from '../../../../constants/app';
+import { movieData, maxYear, minYear } from '../../../../constants/app';
 
 function YearFilter(props) {
   const [inputYear, setInputYear] = useState('');
   const [timerId, setTimerId] = useState('');
   const [hintPosition, setHintPosition] = useState('hide');
 
-  const {
-    storeYear,
-    maxYear,
-    minYear,
-    notification,
-    addMovieData,
-  } = props;
+  const { storeYear, addMovieData } = props;
+
+  const notification = `Please input the date between ${minYear} and ${maxYear}`;
 
   const showNotification = () => {
     clearTimeout(timerId);
@@ -86,17 +82,11 @@ function YearFilter(props) {
 
 YearFilter.propTypes = {
   storeYear: PropTypes.string,
-  maxYear: PropTypes.number,
-  minYear: PropTypes.number,
-  notification: PropTypes.string,
   addMovieData: PropTypes.func,
 };
 
 YearFilter.defaultProps = {
   storeYear: '',
-  maxYear: 2020,
-  minYear: 1950,
-  notification: 'Please input date from \'1950\' to \'2020\'',
   addMovieData: () => { },
 };
 

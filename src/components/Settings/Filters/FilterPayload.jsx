@@ -15,7 +15,7 @@ function FilterPayload(props) {
     currentGenre,
     allGenres,
   } = props;
-  const blancGenre = [{ id: ' ', name: ' ' }];
+  const blancGenre = [{ id: 'not selected', name: 'not selected' }];
   return (
     <section>
       <YearFilter />
@@ -34,7 +34,7 @@ FilterPayload.propTypes = {
 };
 
 FilterPayload.defaultProps = {
-  ratingPoints: [' ', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  ratingPoints: ['not selected', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   currentRating: '',
   currentGenre: '',
   allGenres: [],

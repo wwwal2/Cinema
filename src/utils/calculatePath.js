@@ -6,7 +6,7 @@ export default (status) => {
   const values = Object.values(object);
 
   const urlPath = values.reduce((acc, item, index) => {
-    if (item === ' ') {
+    if (item === ' ' || !item) {
       return acc;
     }
     if (index === 0) {

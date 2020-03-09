@@ -31,3 +31,6 @@ export const statusData = {
 export const uiPage = 'uiPage';
 export const filters = 'Filters';
 export const options = 'Options';
+
+export const maxYear = 2020;
+export const minYear = 1920;
