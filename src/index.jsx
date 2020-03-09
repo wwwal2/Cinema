@@ -6,6 +6,7 @@ import React from 'react';
 //     trackAllPureComponents: true,
 //   });
 // }
+// static whyDidYouRender = true;
 
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
