@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -21,7 +21,7 @@ import Pagination from './components/Pagination';
 function App(props) {
   const { detailsTab } = props;
   return (
-    <Router>
+    <Router basename="https://wwwal2.github.io/Cinema/dist/">
       <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
         <Header />
         <Pagination />
