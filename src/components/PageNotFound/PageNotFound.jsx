@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import missingPage from '../../images/cropped.gif';
 import { addStatusData } from '../../redux/actions';
 import { statusData } from '../../constants/app';
-import styles from './PageNotFound.scss';
+import pageNotFound from './PageNotFound.scss';
 
 function PageNotFound(props) {
   const { addStatusData } = props;
   addStatusData(statusData.section, 'Page not found');
   return (
-    <section className={styles.container}>
-      <img alt="missing page image" src={missingPage} className={styles.image} />
+    <section className={pageNotFound.container}>
+      <img alt="missing page image" src={missingPage} className={pageNotFound.image} />
     </section>
   );
 }

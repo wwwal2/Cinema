@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { changeUiPage, update } from '../../redux/actions';
 
-import styles from './Pagination.scss';
+import pagination from './Pagination.scss';
 
 function Arrow(props) {
   const {
@@ -26,7 +26,7 @@ function Arrow(props) {
       alt="arrow"
       src={image}
       onClick={() => changePage(page)}
-      className={active ? `${styles.arrow} ${styles.enabled}` : styles.arrow}
+      className={active ? `${pagination.arrow} ${pagination.enabled}` : pagination.arrow}
     />
   );
 }

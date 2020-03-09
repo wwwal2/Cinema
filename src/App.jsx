@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import style from './App.scss';
+import app from './App.scss';
 import { addUrlData } from './redux/actions';
 
 import Header from './components/Header';
@@ -22,7 +22,7 @@ function App(props) {
   const { detailsTab } = props;
   return (
     <Router basename="/">
-      <div className={detailsTab ? `${style.wrapper} ${style.details}` : style.wrapper}>
+      <div className={detailsTab ? `${app.wrapper} ${app.details}` : app.wrapper}>
         <Header />
         <Pagination />
         <Switch>
@@ -33,7 +33,7 @@ function App(props) {
           <Route component={PageNotFound} />
         </Switch>
         <Pagination />
-        <div className={style.buffer} />
+        <div className={app.buffer} />
       </div>
       <Footer />
     </Router>
