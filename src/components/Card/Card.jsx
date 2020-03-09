@@ -31,7 +31,6 @@ function Card(props) {
   } = props;
 
   const [favorite, setFavorite] = useState(checkFavorite(favoriteIds, item.id));
-  const [imagePath, setImagePath] = useState(`http://image.tmdb.org/t/p/w185/${item.poster_path}`);
   const [notification, setNotification] = useState(card.notification);
 
   const history = useHistory();
@@ -48,15 +47,21 @@ function Card(props) {
     }
   };
 
-  const iconClick = (id) => {
-    addDetailsId(id);
+  const imagePath = () => {
+    return item.poster_path
+      ? `http://image.tmdb.org/t/p/w185/${item.poster_path}`
+      : noPoster;
+  };
+
+  const iconClick = () => {
+    addDetailsId(item.id);
     addStatusData(statusData.detailsTab, true);
-    history.push(`/details/${id}`);
+    history.push(`/details/${item.id}`);
   };
 
   return (
-    <div className={card.card}>
-      <section className={card.favoriteContainer}>
+    <section className={card.card}>
+      <div className={card.favoriteContainer}>
         <div className={notification}>Added to favorite</div>
         <img
           role="button"
@@ -65,7 +70,7 @@ function Card(props) {
           className={card.favoriteImg}
           onClick={toggleFavorite}
         />
-      </section>
+      </div>
       <h3 className={card.label}>
         {
           `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
@@ -74,9 +79,8 @@ function Card(props) {
       <img
         className={card.poster}
         alt="movie poster"
-        src={imagePath}
-        onError={() => setImagePath(noPoster)}
-        onClick={() => iconClick(item.id)}
+        src={imagePath()}
+        onClick={iconClick}
       />
       <p className={card.description}>
         {
@@ -88,7 +92,7 @@ function Card(props) {
       <p className={card.rate}>
         {`Rate ${item.vote_average}`}
       </p>
-    </div>
+    </section>
   );
 }
 

@@ -12,3 +12,11 @@
 	margin-right: 3vw;
 	font-family:  Ubuntu, serif;
 }
+
+.link {
+	text-decoration: none;
+	color: #ffffff;
+	&:hover {
+		color: #ff0000;
+	}
+}
