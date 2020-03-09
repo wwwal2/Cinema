@@ -20,7 +20,7 @@ export default class Request {
     const data = await fetch(`${url}`);
 
     if (!data.ok) {
-      throw new Error(`Request with options ${url} failed. Status: ${data.status}`);
+      return 'Request failed';
     }
 
     return data.json();

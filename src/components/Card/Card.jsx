@@ -51,7 +51,7 @@ function Card(props) {
   const iconClick = (id) => {
     addDetailsId(id);
     addStatusData(statusData.detailsTab, true);
-    history.push('/details/');
+    history.push(`/details/${id}`);
   };
 
   return (

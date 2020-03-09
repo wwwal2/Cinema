@@ -26,7 +26,8 @@ function App(props) {
         <Header />
         <Pagination />
         <Switch>
-          <Route exact path="/details/" component={Details} />
+          <Route exact path="/details/:id/" component={Details} />
+          <Route exact path="/pageNotFound/" component={PageNotFound} />
           <Route exact path="/:query/" component={Main} />
           <Route exact path="/" component={Main} />
           <Route component={PageNotFound} />

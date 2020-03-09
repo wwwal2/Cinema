@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import details from './Details.scss';
 import favoriteOn from '../../images/starFilled.png';
@@ -27,12 +27,19 @@ function Details(props) {
   const [imagePath, setImagePath] = useState('');
   const request = new Request();
   const history = useHistory();
+  const { id } = useParams();
+  addStatusData(statusData.detailsTab, true);
 
   const fetchData = async () => {
-    const result = await request.getDetails(detailsId);
-    setData(result);
-    setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
-    setFavorite(checkFavorite(favoriteIds, result.id));
+    const result = await request.getDetails(detailsId || id);
+    if (result === 'Request failed') {
+      addStatusData(statusData.detailsTab, false);
+      history.push('/pageNotFound/');
+    } else {
+      setData(result);
+      setImagePath(`http://image.tmdb.org/t/p/w500/${result.poster_path}`);
+      setFavorite(checkFavorite(favoriteIds, result.id));
+    }
   };
 
   useEffect(() => {
