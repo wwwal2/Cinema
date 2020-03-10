@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addMovieData } from '../../../redux/actions';
 import { emptyField, movieData } from '../../../constants/app';
-import filters from './FilterPayload.scss';
+import filters from './Filters.scss';
 
 function Select(props) {
   const {

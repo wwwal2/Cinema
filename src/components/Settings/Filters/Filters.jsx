@@ -8,7 +8,7 @@ import Buttons from '../Buttons';
 import YearFilter from './YearFilter';
 import Select from './Select';
 
-function FilterPayload(props) {
+function Filters(props) {
   const {
     currentRating,
     currentGenre,
@@ -24,13 +24,13 @@ function FilterPayload(props) {
   );
 }
 
-FilterPayload.propTypes = {
+Filters.propTypes = {
   currentRating: PropTypes.string,
   currentGenre: PropTypes.string,
   allGenres: PropTypes.array,
 };
 
-FilterPayload.defaultProps = {
+Filters.defaultProps = {
   currentRating: '',
   currentGenre: '',
   allGenres: [],
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, null)(FilterPayload);
+export default connect(mapStateToProps, null)(Filters);

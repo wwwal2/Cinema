@@ -67,7 +67,7 @@ function Card(props) {
     : item.overview;
 
   return (
-    <section
+    <div
       className={card.card}
       onClick={cardClick}
     >
@@ -95,7 +95,7 @@ function Card(props) {
       <p className={card.rate}>
         {rate}
       </p>
-    </section>
+    </div>
   );
 }
 

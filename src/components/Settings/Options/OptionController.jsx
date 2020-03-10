@@ -21,24 +21,36 @@ function OptionsController(props) {
     changePayloadNum,
   } = props;
 
+  const getLeftArrowClass = () => {
+    return defineClassName(allControllers[target], minCardsNum, 'left');
+  };
+
+  const getRightArrowClass = () => {
+    return defineClassName(allControllers[target], maxCardsNum, 'right');
+  };
+
+  const handleDecrement = () => {
+    changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum);
+  };
+
+  const handleIncrement = () => {
+    changePayloadNum(changeStep, target, maxCardsNum - allControllers[target]);
+  };
+
   return (
     <section className={options.container}>
       <label className={options.label}>{label}</label>
       <div className={options.blockContainer}>
         <i
-          className={defineClassName(allControllers[target], minCardsNum, 'left')}
-          onClick={
-            () => changePayloadNum(-changeStep, target, allControllers[target] - minCardsNum)
-          }
+          className={getLeftArrowClass()}
+          onClick={handleDecrement}
         />
         <div className={options.value}>
           {allControllers[target]}
         </div>
         <i
-          className={defineClassName(allControllers[target], maxCardsNum, 'right')}
-          onClick={
-            () => changePayloadNum(changeStep, target, maxCardsNum - allControllers[target])
-          }
+          className={getRightArrowClass()}
+          onClick={handleIncrement}
         />
       </div>
     </section>
