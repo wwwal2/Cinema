@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addMovieData } from '../../../redux/actions';
-import { emptyField } from '../../../constants/app';
+import { emptyField, movieData } from '../../../constants/app';
 import filters from './FilterPayload.scss';
 
 function Select(props) {
@@ -15,7 +15,7 @@ function Select(props) {
 
   const option = (name, value) => (<option key={name} value={value}>{name}</option>);
   const defineAllOptions = () => {
-    if (filterName === 'genre') {
+    if (filterName === movieData.genre) {
       return allOptions.map((item) => option(item.name, item.name));
     }
     return allOptions.map((rate) => {
