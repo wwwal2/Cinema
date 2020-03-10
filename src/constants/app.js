@@ -32,5 +32,8 @@ export const uiPage = 'uiPage';
 export const filters = 'Filters';
 export const options = 'Options';
 
+export const emptyField = 'Empty';
+export const ratingPoints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 export const maxYear = 2020;
 export const minYear = 1920;

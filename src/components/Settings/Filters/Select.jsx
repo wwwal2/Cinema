@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addMovieData } from '../../../redux/actions';
+import { emptyField } from '../../../constants/app';
 import filters from './FilterPayload.scss';
 
 function Select(props) {
@@ -13,7 +14,7 @@ function Select(props) {
   } = props;
   const genres = allGenres.map((genre) => genre.name);
   const defineOption = (filter, value) => {
-    if (filter === 'genre' || value === 'Empty' || value === 10) {
+    if (filter === 'genre' || value === emptyField || value === 10) {
       return value;
     }
     return `${value} - ${value + 0.9}`;
@@ -27,6 +28,9 @@ function Select(props) {
           id={id}
           className={filters.select}
         >
+          <option value={emptyField} hidden>
+            {emptyField}
+          </option>
           {options.map((option) => {
             return (
               <option value={option} key={option}>
@@ -41,7 +45,7 @@ function Select(props) {
       </section>
     );
   };
-  return ratingPoints[0]
+  return ratingPoints[1]
     ? generateSelect(ratingPoints, selected, 'rating')
     : generateSelect(genres, selected, 'genre');
 }

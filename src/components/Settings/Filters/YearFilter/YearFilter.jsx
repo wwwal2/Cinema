@@ -6,7 +6,12 @@ import filters from '../FilterPayload.scss';
 
 import { addMovieData } from '../../../../redux/actions';
 import { validateLimits, onlyNumbers } from '../../../../utils';
-import { movieData, maxYear, minYear } from '../../../../constants/app';
+import {
+  movieData,
+  maxYear,
+  minYear,
+  emptyField,
+} from '../../../../constants/app';
 
 function YearFilter(props) {
   const [inputYear, setInputYear] = useState('');
@@ -35,7 +40,7 @@ function YearFilter(props) {
         addMovieData(movieData.year, inputYear);
       } else {
         showNotification();
-        setInputYear('');
+        setInputYear(emptyField);
       }
     }
   };

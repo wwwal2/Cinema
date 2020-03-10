@@ -28,7 +28,7 @@ export default class Request {
 
   getMovies(...args) {
     const req = args.reduce((acc, curr, index) => {
-      if (curr !== ' ') {
+      if (curr !== 'Empty') {
         acc = acc + this.keyNames[index] + curr;
         if (index === 3) {
           acc = acc + this.keyNames[4] + (Number(curr) + 0.9);
