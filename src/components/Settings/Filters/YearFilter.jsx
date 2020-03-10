@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import filters from '../FilterPayload.scss';
+import filters from './Filters.scss';
 
-import { addMovieData } from '../../../../redux/actions';
-import { validateLimits, onlyNumbers } from '../../../../utils';
-import { movieData, maxYear, minYear } from '../../../../constants/app';
+import { addMovieData } from '../../../redux/actions';
+import { validateLimits, onlyNumbers } from '../../../utils';
+import {
+  movieData,
+  maxYear,
+  minYear,
+  emptyField,
+} from '../../../constants/app';
 
 function YearFilter(props) {
   const [inputYear, setInputYear] = useState('');
@@ -17,7 +22,7 @@ function YearFilter(props) {
 
   const notification = `Please input the date between ${minYear} and ${maxYear}`;
 
-  const showNotification = () => {
+  const toggleNotification = () => {
     clearTimeout(timerId);
     setHintPosition('show');
     const timer = setTimeout(() => {
@@ -34,8 +39,8 @@ function YearFilter(props) {
       if (validateLimits(maxYear, minYear, inputYear)) {
         addMovieData(movieData.year, inputYear);
       } else {
-        showNotification();
-        setInputYear('');
+        toggleNotification();
+        setInputYear(emptyField);
       }
     }
   };

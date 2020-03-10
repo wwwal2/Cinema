@@ -4,13 +4,15 @@ import footer from './Footer.scss';
 
 export default function Footer(props) {
   const { created, email } = props;
+  const mailto = `mailto:${email}?subject=Mail to me`;
+
   return (
     <footer className={footer.footer}>
       <span className={footer.content}>{created}</span>
       <span className={footer.content}>
         <a
           className={footer.link}
-          href={`mailto:${email}?subject=Mail to me`}
+          href={mailto}
         >
           Send me an email
         </a>

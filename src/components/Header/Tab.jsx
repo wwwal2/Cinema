@@ -15,18 +15,20 @@ function Tab(props) {
     currentSection,
   } = props;
 
-  const changeTab = (value) => {
-    addStatusData(statusData.section, sections[value.toLowerCase()]);
+  const changeTab = () => {
+    addStatusData(statusData.section, sections[tabName.toLowerCase()]);
     addStatusData(statusData.detailsTab, false);
     update();
   };
+
+  const className = currentSection === tabName.toLowerCase() ? `${header.tab} ${header.active}` : header.tab;
 
   return (
     <Link to="/" className={header.link}>
       <button
         key={tabName}
-        className={currentSection === tabName.toLowerCase() ? `${header.tab} ${header.active}` : header.tab}
-        onClick={() => changeTab(tabName)}
+        className={className}
+        onClick={changeTab}
         type="button"
       >
         {tabName}

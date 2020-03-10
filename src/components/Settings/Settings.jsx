@@ -39,8 +39,20 @@ export default class Filter extends React.Component {
     });
   }
 
-  render() {
+  btnClassName = (btnName) => {
     const { settings, hide } = this.state;
+    return settings === btnName && !hide
+      ? settingsStyles.activeButton
+      : settingsStyles.settingsBtn;
+  }
+
+  getDropdown = () => {
+    const { settings } = this.state;
+    return settings === filters ? <FilterPayload /> : <OptionsPayload />;
+  }
+
+  render() {
+    const { hide } = this.state;
 
     return (
       <section
@@ -50,18 +62,14 @@ export default class Filter extends React.Component {
       >
         <button
           type="button"
-          className={settings === filters && !hide
-            ? settingsStyles.activeButton
-            : settingsStyles.settingsBtn}
+          className={this.btnClassName(filters)}
           onClick={() => this.toggle(filters)}
         >
           {filters}
         </button>
         <button
           type="button"
-          className={settings === options && !hide
-            ? settingsStyles.activeButton
-            : settingsStyles.settingsBtn}
+          className={this.btnClassName(options)}
           onClick={() => this.toggle(options)}
         >
           {options}
@@ -69,11 +77,7 @@ export default class Filter extends React.Component {
         <section
           className={settingsStyles[`hide-${hide}`]}
         >
-          {
-            settings === filters
-              ? <FilterPayload />
-              : <OptionsPayload />
-          }
+          {this.getDropdown()}
         </section>
       </section>
     );

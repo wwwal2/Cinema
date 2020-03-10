@@ -6,9 +6,11 @@ import main from './Main.scss';
 
 export default function Payload(props) {
   const { items } = props;
+  const payload = items.map((item) => <Card key={item.id} item={item} />);
+
   return (
     <main className={main.pageBody}>
-      {items.map((item) => <Card key={item.id} item={item} />)}
+      {payload}
     </main>
   );
 }

@@ -2,58 +2,68 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addMovieData } from '../../../redux/actions';
-import filters from './FilterPayload.scss';
+import { emptyField, movieData } from '../../../constants/app';
+import filters from './Filters.scss';
 
 function Select(props) {
   const {
+    allOptions,
     selected,
-    allGenres,
-    ratingPoints,
+    filterName,
     addMovieData,
   } = props;
-  const genres = allGenres.map((genre) => genre.name);
-  const generateSelect = (options, current, id) => {
-    return (
-      <section className={filters.gridContainer}>
-        <select
-          onChange={(event) => addMovieData(id, event.target.value)}
-          value={current}
-          id={id}
-          className={filters.select}
-        >
-          {options.map((option) => {
-            return (
-              <option value={option} key={option}>
-                {option}
-              </option>
-            );
-          })}
-        </select>
-        <label htmlFor={id} className={filters.label}>
-          {`select ${id}`}
-        </label>
-      </section>
-    );
+
+  const option = (name, value) => (<option key={name} value={value}>{name}</option>);
+
+  const defineAllOptions = () => {
+    if (filterName === movieData.genre) {
+      return allOptions.map((item) => option(item.name, item.name));
+    }
+    return allOptions.map((rate) => {
+      return rate === 10
+        ? option(rate, rate)
+        : option(`${rate} - ${rate + 0.9}`, rate);
+    });
   };
-  return ratingPoints[0]
-    ? generateSelect(ratingPoints, selected, 'rating')
-    : generateSelect(genres, selected, 'genre');
+
+  const label = `select ${filterName}`;
+
+  const onFilterChange = (e) => {
+    addMovieData(filterName, e.target.value);
+  };
+
+  return (
+    <section className={filters.gridContainer}>
+      <select
+        onChange={onFilterChange}
+        value={selected}
+        id={filterName}
+        className={filters.select}
+      >
+        <option value={emptyField} hidden>
+          {emptyField}
+        </option>
+        {defineAllOptions()}
+      </select>
+      <label htmlFor={filterName} className={filters.label}>
+        {label}
+      </label>
+    </section>
+  );
 }
 
 Select.propTypes = {
-  allGenres: PropTypes.array,
-  ratingPoints: PropTypes.array,
-  addRating: PropTypes.func,
-  addGenre: PropTypes.func,
+  selected: PropTypes.string,
+  allOptions: PropTypes.array,
   addMovieData: PropTypes.func,
-  readTheStore: PropTypes.object,
+  filterName: PropTypes.string,
 };
 
 Select.defaultProps = {
-  allGenres: [],
-  ratingPoints: [],
+  filterName: '',
+  selected: '',
+  allOptions: [],
   addMovieData: () => { },
-  readTheStore: {},
 };
 
 export default connect(null, { addMovieData })(Select);

@@ -35,7 +35,8 @@ function Card(props) {
 
   const history = useHistory();
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
     addFavorite(item);
     setFavorite(!favorite);
     if (!favorite) {
@@ -46,53 +47,55 @@ function Card(props) {
       update();
     }
   };
-
   const imagePath = () => {
     return item.poster_path
       ? `https://image.tmdb.org/t/p/w185/${item.poster_path}`
       : noPoster;
   };
 
-  const iconClick = () => {
+  const cardClick = () => {
     addDetailsId(item.id);
     addStatusData(statusData.detailsTab, true);
     history.push(`/details/${item.id}`);
   };
 
+  const favoriteImg = (favorite && favoriteOn) || favoriteOff;
+  const titleAndDate = `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`;
+  const rate = `Rate ${item.vote_average}`;
+  const overview = item.overview.length > textLength
+    ? `${item.overview.substr(0, textLength)}...`
+    : item.overview;
+
   return (
-    <section className={card.card}>
+    <div
+      className={card.card}
+      onClick={cardClick}
+    >
       <div className={card.favoriteContainer}>
         <div className={notification}>Added to favorite</div>
         <img
           role="button"
           alt="favorite"
-          src={favorite ? favoriteOn : favoriteOff}
+          src={favoriteImg}
           className={card.favoriteImg}
           onClick={toggleFavorite}
         />
       </div>
       <h3 className={card.label}>
-        {
-          `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
-        }
+        {titleAndDate}
       </h3>
       <img
         className={card.poster}
         alt="movie poster"
         src={imagePath()}
-        onClick={iconClick}
       />
       <p className={card.description}>
-        {
-          item.overview.length > textLength
-            ? `${item.overview.substr(0, textLength)}...`
-            : item.overview
-        }
+        {overview}
       </p>
       <p className={card.rate}>
-        {`Rate ${item.vote_average}`}
+        {rate}
       </p>
-    </section>
+    </div>
   );
 }
 

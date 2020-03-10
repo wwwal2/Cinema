@@ -7,7 +7,7 @@ import makeRecitation from './makeRecitation';
 import checkFavorite from './checkFavorite';
 import saveSettings from './saveSettings';
 import checkSavedSettings from './checkSavedSettings';
-import checkLimit from './checkLimit';
+import defineClassName from './defineClassName';
 import toggleFavorite from './toggleFavorite';
 import calculatePath from './calculatePath';
 import decodePath from './decodePath';
@@ -25,7 +25,7 @@ export {
   checkFavorite,
   saveSettings,
   checkSavedSettings,
-  checkLimit,
+  defineClassName,
   toggleFavorite,
   calculatePath,
   decodePath,

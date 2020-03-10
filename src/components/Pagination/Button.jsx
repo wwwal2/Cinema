@@ -16,8 +16,8 @@ function Button(props) {
     section,
   } = props;
 
-  const changePage = (value) => {
-    changeUiPage(section, value);
+  const changePage = () => {
+    changeUiPage(section, page);
     update();
   };
 
@@ -28,7 +28,7 @@ function Button(props) {
       <button
         type="button"
         className={pagination[btnClass]}
-        onClick={() => changePage(page)}
+        onClick={changePage}
         disabled={disabled}
       >
         {page}

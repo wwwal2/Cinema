@@ -29,8 +29,8 @@ function Buttons(props) {
     update();
   };
 
-  const onReset = (element) => {
-    if (element === filters) {
+  const onReset = () => {
+    if (elementName === filters) {
       resetFilters();
     } else {
       resetOptions();
@@ -39,21 +39,22 @@ function Buttons(props) {
     update();
   };
 
+  const applyClassName = `${settings.actionBtn} ${settings.apply}`;
+  const resetClassName = `${settings.actionBtn} ${settings.reset} ${settings.resetLink}`;
+
   return (
     <section className={settings.actionBtnContainer}>
-
       <button
         type="button"
         onClick={onApply}
-        className={`${settings.actionBtn} ${settings.apply}`}
+        className={applyClassName}
       >
         Apply
       </button>
-
       <button
         type="button"
-        onClick={() => onReset(elementName)}
-        className={`${settings.actionBtn} ${settings.reset} ${settings.resetLink}`}
+        onClick={onReset}
+        className={resetClassName}
       >
         Reset
       </button>

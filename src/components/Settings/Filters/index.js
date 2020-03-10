@@ -1,3 +1,3 @@
-import component from './FilterPayload';
+import component from './Filters';
 
 export default component;

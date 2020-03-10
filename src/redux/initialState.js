@@ -1,10 +1,10 @@
-import { currentCardsNum } from '../constants/app';
+import { currentCardsNum, emptyField } from '../constants/app';
 
 export default {
   movie: {
-    year: ' ',
-    genre: ' ',
-    rating: ' ',
+    year: emptyField,
+    genre: emptyField,
+    rating: emptyField,
   },
   status: {
     totalResults: 0,
@@ -30,5 +30,5 @@ export default {
   },
   allGenres: [],
   detailsId: 0,
-  searchQuery: ' ',
+  searchQuery: '',
 };
