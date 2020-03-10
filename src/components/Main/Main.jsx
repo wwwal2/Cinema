@@ -58,11 +58,12 @@ class Main extends React.PureComponent {
       addStatusData,
       briefStatus,
       history,
+      location: { search },
       updateCounter,
     } = this.props;
 
     if (prevProps.updateCounter !== updateCounter) {
-      initRequest(allProps)
+      initRequest(allProps, null, decodePath(search))
         .then((res) => {
           addStatusData(statusData.totalResults, res.totalResults);
           this.setState({

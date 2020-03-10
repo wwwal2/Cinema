@@ -35,7 +35,8 @@ function Card(props) {
 
   const history = useHistory();
 
-  const toggleFavorite = () => {
+  const toggleFavorite = (e) => {
+    e.stopPropagation();
     addFavorite(item);
     setFavorite(!favorite);
     if (!favorite) {
@@ -53,14 +54,17 @@ function Card(props) {
       : noPoster;
   };
 
-  const iconClick = () => {
+  const cardClick = () => {
     addDetailsId(item.id);
     addStatusData(statusData.detailsTab, true);
     history.push(`/details/${item.id}`);
   };
 
   return (
-    <section className={card.card}>
+    <section
+      className={card.card}
+      onClick={cardClick}
+    >
       <div className={card.favoriteContainer}>
         <div className={notification}>Added to favorite</div>
         <img
@@ -80,7 +84,6 @@ function Card(props) {
         className={card.poster}
         alt="movie poster"
         src={imagePath()}
-        onClick={iconClick}
       />
       <p className={card.description}>
         {

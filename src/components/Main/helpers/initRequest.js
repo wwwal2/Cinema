@@ -17,6 +17,7 @@ export default async (props, genres) => {
     searchQuery,
     uiPage,
   } = props;
+
   switch (section) {
     case sections.main:
       const mainPayload = await getData(

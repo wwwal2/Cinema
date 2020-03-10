@@ -10,6 +10,7 @@
   height: 100%;
   margin: 0;
   max-height: 700px;
+  cursor: pointer;
 }
 
 .favoriteContainer {
@@ -25,7 +26,7 @@
     width: 30px;
     border: none;
     &:hover {
-      cursor: pointer;
+      filter: brightness(1.5);
     }
   }
 
@@ -49,7 +50,6 @@
 }
 
 .poster {
-  cursor: pointer;
   height: 300px;
 }
 
