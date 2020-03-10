@@ -16,17 +16,18 @@ function Arrow(props) {
     active,
   } = props;
 
-  const changePage = (myPage) => {
-    changeUiPage(section, myPage);
+  const changePage = () => {
+    changeUiPage(section, page);
     update();
   };
+  const className = active ? `${pagination.arrow} ${pagination.enabled}` : pagination.arrow;
 
   return (
     <img
       alt="arrow"
       src={image}
-      onClick={() => changePage(page)}
-      className={active ? `${pagination.arrow} ${pagination.enabled}` : pagination.arrow}
+      onClick={changePage}
+      className={className}
     />
   );
 }

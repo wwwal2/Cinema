@@ -17,8 +17,8 @@ function FilterPayload(props) {
   return (
     <section>
       <YearFilter />
-      { allGenres && <Select selected={currentGenre} allGenres={allGenres} /> }
-      <Select selected={currentRating} ratingPoints={ratingPoints} />
+      { allGenres && <Select selected={currentGenre} allOptions={allGenres} filterName="genre" /> }
+      <Select selected={currentRating} allOptions={ratingPoints} filterName="rating" />
       <Buttons elementName={filters} />
     </section>
   );

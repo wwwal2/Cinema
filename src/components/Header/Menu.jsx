@@ -1,40 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import header from './Header.scss';
 import Tab from './Tab';
 
-function Menu(props) {
-  const { tabNames } = props;
+import { tabNames } from '../../constants/app';
+
+function Menu() {
+  const payload = tabNames.map((name) => <Tab tabName={name} key={name} />);
+
   return (
     <menu className={header.menuContainer}>
-      {
-        tabNames.map(
-          (tabName) => {
-            return (
-              <Tab
-                tabName={tabName}
-                key={tabName}
-              />
-            );
-          },
-        )
-      }
+      {payload}
     </menu>
   );
 }
-
-Menu.propTypes = {
-  tabNames: PropTypes.array,
-};
-
-Menu.defaultProps = {
-  tabNames: [
-    'Main',
-    'Popular',
-    'Favorite',
-  ],
-};
 
 const mapStateToProps = (state) => (
   {

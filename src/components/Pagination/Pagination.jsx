@@ -22,12 +22,15 @@ function Pagination(props) {
     section,
   } = props;
 
+  const leftArrowImg = currentPage > 1 ? arrowLeft : arrowLeftDisabled;
+  const rightArrowImg = currentPage < totalPages ? arrowRight : arrowRightDisabled;
+
   return (totalPages > 1 && !detailsTab)
     && (
       <nav className={pagination.container}>
         <Arrow
           page={inRange(currentPage, -1, totalPages)}
-          image={currentPage > 1 ? arrowLeft : arrowLeftDisabled}
+          image={leftArrowImg}
           section={section}
           active={currentPage > 1}
         />
@@ -37,7 +40,7 @@ function Pagination(props) {
         />
         <Arrow
           page={inRange(currentPage, 1, totalPages)}
-          image={currentPage < totalPages ? arrowRight : arrowRightDisabled}
+          image={rightArrowImg}
           section={section}
           active={currentPage < totalPages}
         />

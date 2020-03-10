@@ -24,7 +24,6 @@ function Details(props) {
 
   const [data, setData] = useState(false);
   const [favorite, setFavorite] = useState(false);
-  const [imagePath, setImagePath] = useState('');
   const request = new Request();
   const history = useHistory();
   const { id } = useParams();
@@ -37,7 +36,6 @@ function Details(props) {
       history.push('/pageNotFound/');
     } else {
       setData(result);
-      setImagePath(`https://image.tmdb.org/t/p/w500/${result.poster_path}`);
       setFavorite(checkFavorite(favoriteIds, result.id));
     }
   };
@@ -51,10 +49,21 @@ function Details(props) {
     setFavorite(!favorite);
   };
 
+  const imagePath = () => {
+    return data.poster_path
+      ? `https://image.tmdb.org/t/p/w500/${data.poster_path}`
+      : noPoster;
+  };
+
   const goBack = () => {
     addStatusData(statusData.detailsTab, false);
     history.push('/');
   };
+
+  const favoriteImg = favorite ? favoriteOn : favoriteOff;
+  const release = `Release: ${data.release_date}`;
+  const budget = `Budget: $${data.budget}`;
+  const ratingAndVotes = `Rating: ${data.vote_average} Votes: ${data.vote_count}`;
 
   return (
     <section className={details.wrapper}>
@@ -65,24 +74,23 @@ function Details(props) {
               className={details.poster}
               alt="no poster to this movie"
               onClick={goBack}
-              src={imagePath}
-              onError={() => setImagePath(noPoster)}
+              src={imagePath()}
             />
             <section className={details.informContainer}>
               <img
                 alt="favorite"
-                src={favorite ? favoriteOn : favoriteOff}
+                src={favoriteImg}
                 className={details.favorite}
                 onClick={toggleFavorite}
               />
               <h2>{data.title}</h2>
-              <p className={details.shortText}>{`Release: ${data.release_date}`}</p>
+              <p className={details.shortText}>{release}</p>
               <p className={details.shortText}>
                 <span>Production: </span>
                 {makeRecitation(data.production_countries, 'name')}
               </p>
-              <p className={details.shortText}>{`Budget: $${data.budget}`}</p>
-              <p className={details.shortText}>{`Rating: ${data.vote_average} Votes: ${data.vote_count}`}</p>
+              <p className={details.shortText}>{budget}</p>
+              <p className={details.shortText}>{ratingAndVotes}</p>
               <p className={details.shortText}>{makeRecitation(data.genres, 'name')}</p>
               <article>
                 <p>{data.overview}</p>

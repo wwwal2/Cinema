@@ -47,7 +47,6 @@ function Card(props) {
       update();
     }
   };
-
   const imagePath = () => {
     return item.poster_path
       ? `https://image.tmdb.org/t/p/w185/${item.poster_path}`
@@ -60,6 +59,13 @@ function Card(props) {
     history.push(`/details/${item.id}`);
   };
 
+  const favoriteImg = (favorite && favoriteOn) || favoriteOff;
+  const titleAndDate = `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`;
+  const rate = `Rate ${item.vote_average}`;
+  const overview = item.overview.length > textLength
+    ? `${item.overview.substr(0, textLength)}...`
+    : item.overview;
+
   return (
     <section
       className={card.card}
@@ -70,15 +76,13 @@ function Card(props) {
         <img
           role="button"
           alt="favorite"
-          src={favorite ? favoriteOn : favoriteOff}
+          src={favoriteImg}
           className={card.favoriteImg}
           onClick={toggleFavorite}
         />
       </div>
       <h3 className={card.label}>
-        {
-          `${item.title} (${item.release_date ? item.release_date.substr(0, 4) : 'coming soon'})`
-        }
+        {titleAndDate}
       </h3>
       <img
         className={card.poster}
@@ -86,14 +90,10 @@ function Card(props) {
         src={imagePath()}
       />
       <p className={card.description}>
-        {
-          item.overview.length > textLength
-            ? `${item.overview.substr(0, textLength)}...`
-            : item.overview
-        }
+        {overview}
       </p>
       <p className={card.rate}>
-        {`Rate ${item.vote_average}`}
+        {rate}
       </p>
     </section>
   );

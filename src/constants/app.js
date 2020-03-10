@@ -14,6 +14,12 @@ export const sections = {
   search: 'search',
 };
 
+export const tabNames = [
+  'Main',
+  'Popular',
+  'Favorite',
+];
+
 export const movieData = {
   year: 'year',
   genre: 'genre',
