@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import filters from '../FilterPayload.scss';
+import filters from './FilterPayload.scss';
 
-import { addMovieData } from '../../../../redux/actions';
-import { validateLimits, onlyNumbers } from '../../../../utils';
+import { addMovieData } from '../../../redux/actions';
+import { validateLimits, onlyNumbers } from '../../../utils';
 import {
   movieData,
   maxYear,
   minYear,
   emptyField,
-} from '../../../../constants/app';
+} from '../../../constants/app';
 
 function YearFilter(props) {
   const [inputYear, setInputYear] = useState('');

@@ -14,6 +14,7 @@ function Select(props) {
   } = props;
 
   const option = (name, value) => (<option key={name} value={value}>{name}</option>);
+
   const defineAllOptions = () => {
     if (filterName === movieData.genre) {
       return allOptions.map((item) => option(item.name, item.name));
@@ -24,12 +25,17 @@ function Select(props) {
         : option(`${rate} - ${rate + 0.9}`, rate);
     });
   };
+
   const label = `select ${filterName}`;
+
+  const onFilterChange = (e) => {
+    addMovieData(filterName, e.target.value);
+  };
 
   return (
     <section className={filters.gridContainer}>
       <select
-        onChange={(event) => addMovieData(filterName, event.target.value)}
+        onChange={onFilterChange}
         value={selected}
         id={filterName}
         className={filters.select}
