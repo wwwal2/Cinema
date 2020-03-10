@@ -12,6 +12,12 @@ function Select(props) {
     addMovieData,
   } = props;
   const genres = allGenres.map((genre) => genre.name);
+  const defineOption = (filter, value) => {
+    if (filter === 'genre' || value === 'Empty' || value === 10) {
+      return value;
+    }
+    return `${value} - ${value + 0.9}`;
+  };
   const generateSelect = (options, current, id) => {
     return (
       <section className={filters.gridContainer}>
@@ -24,7 +30,7 @@ function Select(props) {
           {options.map((option) => {
             return (
               <option value={option} key={option}>
-                {option}
+                {defineOption(id, option)}
               </option>
             );
           })}
