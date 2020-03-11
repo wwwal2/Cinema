@@ -41,5 +41,6 @@ export const options = 'Options';
 export const emptyField = 'Empty';
 export const ratingPoints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-export const maxYear = 2020;
+const date = new Date();
+export const maxYear = date.getFullYear();
 export const minYear = 1920;
