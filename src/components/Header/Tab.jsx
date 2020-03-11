@@ -24,17 +24,18 @@ function Tab(props) {
   const className = currentSection === tabName.toLowerCase() ? `${header.tab} ${header.active}` : header.tab;
 
   return (
-    <Link to="/" className={header.link}>
-      <button
-        key={tabName}
-        className={className}
-        onClick={changeTab}
-        type="button"
-      >
-        {tabName}
-      </button>
-    </Link>
-
+    <li className={header.link}>
+      <Link to="/" className={header.link}>
+        <button
+          key={tabName}
+          className={className}
+          onClick={changeTab}
+          type="button"
+        >
+          {tabName}
+        </button>
+      </Link>
+    </li>
   );
 }
 

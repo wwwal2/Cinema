@@ -7,7 +7,6 @@
   margin-left: 10px;
   margin-right: 10px;
 
-
   .logo {
     height: 7vh;
     &:hover {
@@ -21,6 +20,7 @@
     height: 7vh;
     margin: 0;
     padding: 0;
+    list-style-type: none;
 
     .link {
       width: 100%;

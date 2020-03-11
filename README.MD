@@ -28,7 +28,7 @@ Latest version of the website starts at:<br/>
 [http://localhost:7000/](http://localhost:7000/)
 
 ## Usage
-Follow this link [Cinema app](http://localhost:7000/)
+Follow this link [Cinema app](https://wwwal2.github.io/Cinema/dist/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
