@@ -1,4 +1,5 @@
 # Cinema info web app
+DEMO [Cinema app](https://wwwal2.github.io/Cinema/dist/)
 
 ## Description
 This web page provides brief an information about all kind of movies. The data is taken from [The movie db](https://www.themoviedb.org) API. 
